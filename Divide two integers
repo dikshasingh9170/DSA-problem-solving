@@ -1,0 +1,17 @@
+class Solution {
+    public int divide(int dividend, int divisor) {
+        int sign=1;
+        if(dividend<0 && divisor>0 || dividend>0 && divisor<0){
+            sign=-1;
+        }
+        long q=Math.abs((long)dividend)/Math.abs((long)divisor);
+        long ans=sign*q;
+        if(ans<-2147483648){
+            return -2147483648;
+        }
+        else if(ans>2147483647){
+            return 2147483647;
+        }
+        return (int)ans;
+    }
+}
