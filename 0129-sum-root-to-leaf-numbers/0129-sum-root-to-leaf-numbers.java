@@ -18,7 +18,7 @@ class Solution {
         return dfs(root, 0);
     }
     
-    private int dfs(TreeNode root, int sum) {
+    public int dfs(TreeNode root, int sum) {
         if (root == null) {
             return 0;
         }
