@@ -10,28 +10,37 @@ class Solution {
     public int numIslands(char[][] grid) {
         int n=grid.length;
         int m=grid[0].length;
-        int[][]vis=new int[n][m];
         int count=0;
         for(int row=0;row<n;row++){
             for(int col=0;col<m;col++){
-                if(vis[row][col]==0 && grid[row][col]=='1'){
+                if(grid[row][col]=='1'){
                     count++;
-                    bfs(row,col,grid,vis);
+                    grid[row][col]=0;
+                    bfs(row,col,grid);
                 }
             }
         }
         return count;
     }
-    public void bfs(int row,int col,char[][] grid,int visited[][]){
-        if(row<0 || col<0 || row>=grid.length || col>=grid[0].length)return;
-        if(grid[row][col]=='0')return;
-        if(visited[row][col]==0){
-            visited[row][col]=1;
-            bfs(row+1,col,grid,visited);
-            bfs(row-1,col,grid,visited);
-            bfs(row,col+1,grid,visited);
-            bfs(row,col-1,grid,visited);
-            
+    public void bfs(int row,int col,char[][] grid){
+        grid[row][col]='0';
+        if(isvalid(row+1,col,grid)){
+            bfs(row+1,col,grid);
         }
+        if(isvalid(row-1,col,grid)){
+            bfs(row-1,col,grid);
+        }
+        if(isvalid(row,col-1,grid)){
+            bfs(row,col-1,grid);
+        }
+        if(isvalid(row,col+1,grid)){
+            bfs(row,col+1,grid);
+        }
+    }
+      public boolean isvalid(int i,int j,char[][] grid){
+        if(i>=0 && i<grid.length && j>=0 && j<grid[0].length && grid[i][j]=='1'){
+            return true;
+        }
+        return false;
     }
 }
