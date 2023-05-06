@@ -31,38 +31,39 @@ class GFG
 
 class Solution
 {
-    //Function to find out minimum steps Knight needs to reach target position.
     public int minStepToReachTarget(int KnightPos[], int TargetPos[], int N)
     {
-        int tx=TargetPos[0]-1;
-        int ty=TargetPos[1]-1;
+        boolean[][] vis=new boolean[N+1][N+1];
         int kx=KnightPos[0]-1;
         int ky=KnightPos[1]-1;
-        Queue<cell> q=new LinkedList<>();
-        if(tx==kx && ky==ty){
+        int tx=TargetPos[0]-1;
+        int ty=TargetPos[1]-1;
+        if(kx==tx && ky==ty){
             return 0;
         }
-        boolean[][] vis=new boolean[N+1][N+1];
+        Queue<cell> q=new LinkedList<cell>();
         q.add(new cell(kx,ky,0));
         vis[kx][ky]=true;
-        int[] ax={1,1,-1,-1,2,2,-2,-2};
-        int[] bx={2,-2,2,-2,1,-1,-1,1};
         while(!q.isEmpty()){
-            cell t=q.poll();
-            if(t.x==tx && t.y==ty){
-                return t.ans;
-            }
+            cell z=q.poll();
+            int[] a={1,1,-1,-1,2,2,-2,-2};
+            int[] b={2,-2,2,-2,1,-1,1,-1};
             for(int i=0;i<8;i++){
-                if(isvalid(t.x+ax[i],t.y+bx[i],N) && vis[t.x+ax[i]][t.y+bx[i]]==false){
-                    vis[t.x+ax[i]][t.y+bx[i]]=true;
-                    q.add(new cell(t.x+ax[i],t.y+bx[i],t.ans+1));
+                if(z.x==tx && z.y==ty){
+                    return z.ans;
+                }
+                else{
+                    if(isvalid(z.x+a[i],z.y+b[i],N) && vis[z.x+a[i]][z.y+b[i]]==false){
+                        vis[z.x+a[i]][z.y+b[i]]=true;
+                        q.add(new cell(z.x+a[i],z.y+b[i],z.ans+1));
+                    }
                 }
             }
         }
         return -1;
     }
-    public boolean isvalid(int x,int y,int N){
-        if(x>=0 && x<N && y>=0 && y<N){
+    public boolean isvalid(int i,int j,int N){
+        if(i>=0 && i<=N-1 && j>=0 && j<=N-1){
             return true;
         }
         return false;
@@ -70,7 +71,7 @@ class Solution
 }
 class cell{
     int x,y,ans;
-    public cell(int x,int y,int ans){
+    public cell(int x,int y, int ans){
         this.x=x;
         this.y=y;
         this.ans=ans;
