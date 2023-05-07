@@ -4,7 +4,6 @@ class Solution {
         for(int i=0;i<wordList.size();i++){
             hs.add(wordList.get(i));
         }
-        System.out.println(hs);
         Queue<pair> q=new LinkedList<pair>();
         q.add(new pair(beginWord,1));
         while(!q.isEmpty()){
@@ -14,20 +13,21 @@ class Solution {
             }
             for(int i=0;i<p.x.length();i++){
                 for(char j='a';j<='z';j++){
-                    char replacedCharArray[] = p.x.toCharArray();
-                    replacedCharArray[i] = j;
-                    String replacedWord = new String(replacedCharArray);
-
-                    if (hs.contains(replacedWord) == true) {
-                        hs.remove(replacedWord);
-                        q.add(new pair(replacedWord, p.y + 1));
-                    }
+                    char[] replacedarray=p.x.toCharArray();
+                    replacedarray[i]=j;
+                    String replaced=new String(replacedarray);
+                     
+                    if(hs.contains(replaced)){
+                        hs.remove(replaced);
+                        q.add(new pair(replaced,p.y+1));
                     }
                 }
+               
             }
-        return 0;
         }
+        return 0;
     }
+}
 class pair{
     String x;
     int y;
