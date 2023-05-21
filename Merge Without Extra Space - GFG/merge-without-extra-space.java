@@ -40,36 +40,31 @@ public class Main
 }
 
 // } Driver Code Ends
-
-
-//User function Template for Java
-
-
-
-//User function Template for Java
-
 class Solution
 {
-    //Function to merge the arrays.
     public static void merge(long arr1[], long arr2[], int n, int m) 
     {
-        long[] arr3 = new long[n+m];
-        for(int i=0; i<n; i++){
-            arr3[i]=arr1[i];
-        }
-        int j=0;
-        for(int i=n; i<n+m; i++){
-            arr3[i]=arr2[j];
-            j++;
-        }
-        Arrays.sort(arr3);
-        for(int i=0;i<n;i++){
-            arr1[i]=arr3[i];
-        }
-        int k=0;
-        for(int i=n;i<n+m;i++){
-            arr2[k]=arr3[i];
-            k++;
-        }
+     int k=n-1;   
+        int i=0;
+    while(k>=0 && i<m)
+    {
+       if(arr1[k]>=arr2[i])
+       {
+         long temp=arr1[k];
+         arr1[k]=arr2[i];
+         arr2[i]=temp;
+           k--;
+           i++;
+       }
+       else
+       {
+          i++;
+       }
+    }
+
+    Arrays.sort(arr1);
+    Arrays.sort(arr2);
+
+       
     }
 }
