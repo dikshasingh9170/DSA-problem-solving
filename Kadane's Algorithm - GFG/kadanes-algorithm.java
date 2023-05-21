@@ -32,10 +32,6 @@ class Main {
 
 
 class Solution{
-
-    // arr: input array
-    // n: size of array
-    //Function to find the sum of contiguous subarray with maximum sum.
     long maxSubarraySum(int arr[], int n){
         
         long currsum=0;long maxsum=Long.MIN_VALUE;
