@@ -30,7 +30,7 @@ class Main
 
 //User function Template for Java
 
-class Solution
+/*class Solution
 {
     public static boolean find3Numbers(int A[], int n, int X) { 
     int sum=0;
@@ -48,5 +48,25 @@ class Solution
             }
         }
     return false;
+    }
+}*/
+
+class Solution
+{
+    public static boolean find3Numbers(int arr[], int n, int X) { 
+      int  x=X;
+        HashSet<Integer> hs=new HashSet<>();
+        for(int i=0;i<n;i++){
+          x=x-arr[i];
+            for(int j=i+1;j<n;j++){
+                if(hs.contains(x-arr[j])){
+                    return true;
+                }
+                   hs.add(arr[j]);
+            }
+         hs.clear();
+         x=X;
+        }
+        return false;
     }
 }
