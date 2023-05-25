@@ -64,10 +64,10 @@ class Complete{
         }
         for(int i=0, j = count; j<n ; ++i, ++j){
             if(arr[i]>k){
-                --bad;
+                bad--;
             }
             if(arr[j]>k){
-                ++bad;
+                bad++;
             }
             ans = Math.min(ans,bad);
         }
