@@ -89,7 +89,6 @@ class Node
 
 class Solution
 {
-    //Function to remove duplicates from unsorted linked list.
     public Node removeDuplicates(Node head) 
     {
          HashSet<Integer> hs=new HashSet<Integer>();
