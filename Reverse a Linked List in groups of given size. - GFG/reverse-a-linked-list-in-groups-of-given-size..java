@@ -80,19 +80,19 @@ class Solution
         if(node==null){
             return null;
         }
-        Node prev=null;
-        Node temp=null;
         Node curr=node;
+        Node prev=null;
+        Node next=null;
         int count=0;
-        while(curr!=null && count<k){
-            temp=curr.next;
+        while(count<k && curr!=null){
+            next=curr.next;
             curr.next=prev;
             prev=curr;
-            curr=temp;
+            curr=next;
             count++;
         }
-        if(temp!=null){
-            node.next=reverse(temp,k);
+        if(next!=null){
+            node.next=reverse(next,k);
         }
         return prev;
     }
