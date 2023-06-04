@@ -113,12 +113,12 @@ class Solution
         while(left!=null && right!=null){
             if(left.data<right.data){
                 temp.next=left;
-                temp=left;
+                temp=temp.next;
                 left=left.next;
             }
             else{
                 temp.next=right;
-                temp=right;
+                temp=temp.next;
                 right=right.next;
             }
         }
