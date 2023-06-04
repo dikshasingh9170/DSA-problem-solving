@@ -116,7 +116,7 @@ class GfG
             start=start.next;
         }
         int temp=current.data;
-        current.data=pivot;
+        current.data=end.data;
         end.data=temp;
         
         return prev;
