@@ -78,6 +78,7 @@ class Solution
         if(head==null || head.next==null){
             return head;
         }
+        
         Node mid=findMid(head);
         
         Node left=head;
@@ -87,8 +88,9 @@ class Solution
         left=mergeSort(left);
         right=mergeSort(right);
         
-        Node result=merge(left,right);
-        return result;
+        Node res=merge(left,right);
+        
+        return res;
     }
     static Node findMid(Node head){
         Node slow=head;
@@ -100,38 +102,33 @@ class Solution
         return slow;
     }
     static Node merge(Node left,Node right){
-       if(left==null){
-           return right;
-       } 
-       if(right==null){
-           return left;
-       }
-       Node ans=new Node(-1);
-       Node temp=ans;
-       while(left!=null && right!=null){
-           if(left.data<right.data){
-               temp.next=left;
-               temp=left;
-               left=left.next;
-           }
-           else{
-               temp.next=right;
-               temp=right;
-               right=right.next;
-           }
-       }
-       while(left!=null){
-           temp.next=left;
-           temp=left;
-           left=left.next;
-       }
-       while(right!=null){
+        if(left==null){
+            return right;
+        }
+        if(right==null){
+            return left;
+        }
+        Node ans=new Node(-1);
+        Node temp=ans;
+        while(left!=null && right!=null){
+            if(left.data<right.data){
+                temp.next=left;
+                temp=left;
+                left=left.next;
+            }
+            else{
+                temp.next=right;
+                temp=right;
+                right=right.next;
+            }
+        }
+        if(left!=null){
+            temp.next=left;
+        }
+        if(right!=null){
             temp.next=right;
-            temp=right;
-            right=right.next;
-       }
-       ans=ans.next;
-       return ans;
+        }
+        return ans.next;
     }
 }
 
