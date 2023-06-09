@@ -40,31 +40,30 @@ public class Main
 }
 
 // } Driver Code Ends
+
+
 class Solution
 {
     public static void merge(long arr1[], long arr2[], int n, int m) 
     {
      int k=n-1;   
         int i=0;
-    while(k>=0 && i<m)
-    {
-       if(arr1[k]>=arr2[i])
-       {
-         long temp=arr1[k];
-         arr1[k]=arr2[i];
-         arr2[i]=temp;
-           k--;
-           i++;
-       }
-       else
-       {
-          i++;
-       }
-    }
-
-    Arrays.sort(arr1);
-    Arrays.sort(arr2);
-
-       
+        while(k>=0 && i<m)
+        {
+            if(arr1[k]>=arr2[i])
+            {
+                long temp=arr1[k];
+                arr1[k]=arr2[i];
+                arr2[i]=temp;
+                k--;
+                i++;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
     }
 }
