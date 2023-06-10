@@ -1,6 +1,8 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> res=new ArrayList<>();
+        //t.c for this code is n!*n
+        //s.c is o(n)+O(n)
+        /*List<List<Integer>> res=new ArrayList<>();
         List<Integer> ans=new ArrayList<Integer>();
         boolean[] freq=new boolean[nums.length];
         permutation(nums,freq,ans,res);
@@ -19,6 +21,29 @@ class Solution {
                 ans.remove(ans.size()-1);
                 freq[i]=false;
             }
+        }*/
+        List<List<Integer>> res=new ArrayList<>();
+        solve(0,nums,res);
+        return res;
+    }
+    public void solve(int i,int[] nums,List<List<Integer>> res){
+        if(i==nums.length){
+            List<Integer> ans=new ArrayList<Integer>();
+            for(int j=0;j<nums.length;j++){
+                ans.add(nums[j]);
+            }
+            res.add(new ArrayList<>(ans));
+            return;
         }
+        for(int j=i;j<nums.length;j++){
+            swap(j,i,nums);
+            solve(i+1,nums,res);
+            swap(j,i,nums);
+        }
+    }
+    public void swap(int x,int y,int[] nums){
+        int temp=nums[x];
+        nums[x]=nums[y];
+        nums[y]=temp;
     }
 }
