@@ -43,7 +43,7 @@ class GFG {
 
 
 
-/*class Compute {
+class Compute {
     public String isSubset( long a1[], long a2[], long n, long m) {
         int i=0;
         int j=0;
@@ -65,13 +65,13 @@ class GFG {
         }
         
     }
-}*/
+}
 
 
 //User function Template for Java
 
 
-class Compute {
+/*class Compute {
     public String isSubset( long a1[], long a2[], long n, long m) {
         HashMap<Long,Integer> hs=new HashMap<Long,Integer>();
         for(int i=0;i<a1.length;i++){
@@ -93,4 +93,4 @@ class Compute {
         }
         return "Yes";
     }
-}
+}*/
