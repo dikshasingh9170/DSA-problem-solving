@@ -1,8 +1,8 @@
 class Solution {
     public void nextPermutation(int[] nums) {
-        if(nums.length<=1){
-            return;
-        }
+       if(nums.length==0){
+           return;
+       }
         if(nums.length==2){
             swap(nums,0,1);
             return;
@@ -14,12 +14,13 @@ class Solution {
             }
             int j=nums.length-1;
             if(i>=0){
-                while(nums[i]>=nums[j] && j>i){
-                    j--;
-                }
-                swap(nums,i,j);
+                while(j>i && nums[i]>=nums[j]){
+                j--;
             }
-            reverse(nums,i+1,nums.length-1);
+            swap(nums,i,j);
+            }
+            
+             reverse(nums,i+1,nums.length-1);
         }
     }
     public void swap(int[] nums,int x,int y){
