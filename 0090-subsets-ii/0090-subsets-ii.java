@@ -7,22 +7,25 @@ class Solution {
         return res;
     }
     public void powerset(int i,int[] nums, List<List<Integer>> res,ArrayList<Integer> arr){
-        res.add(new ArrayList<>(arr));
+        /*res.add(new ArrayList<>(arr));
         for(int index = i;index<nums.length;index++) {
             if(index!=i && nums[index] == nums[index-1]) continue; 
             arr.add(nums[index]); 
             powerset(index+1, nums, res, arr); 
             arr.remove(arr.size() - 1);
-        }
-        /*if(i==nums.length){
-            if(!res.contains(new ArrayList<>(arr))){
+        }*/
+        if(i==nums.length){
+            
                 res.add(new ArrayList<>(arr));
-            }
             return;
         }
         arr.add(nums[i]);
         powerset(i+1,nums,res,arr);
         arr.remove(arr.size()-1);
-        powerset(i+1,nums,res,arr);*/
+        
+        while(i+1<nums.length && nums[i]==nums[i+1]){
+            i++;
+        }
+        powerset(i+1,nums,res,arr);
     }
 }
