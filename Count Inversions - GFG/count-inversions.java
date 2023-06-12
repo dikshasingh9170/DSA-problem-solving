@@ -43,31 +43,32 @@ class Solution {
         return count;
     }
     static long mergeAndCount(long[] arr,int left,int mid,int right){
-        int leftlength=mid-left+1;
-        int rightlength=right-mid;
-        long[] leftarray=new long[leftlength];
-        long[] rightarray=new long[rightlength];
-        for(int i=0;i<leftlength;i++){
-            leftarray[i]=arr[left+i];
-        }
-        for(int i=0;i<rightlength;i++){
-            rightarray[i]=arr[mid+i+1];
-        }
-        int k=left;int j=0,i=0;long count=0;
-        while(i<leftlength && j<rightlength){
-            if(leftarray[i]<=rightarray[j]){
-                arr[k++]=leftarray[i++];
+        ArrayList<Long> temp=new ArrayList<>();
+        int low=left;
+        int high=mid+1;
+        long count=0;
+        while(low<=mid && high<=right){
+            if(arr[low]<=arr[high]){
+                temp.add(arr[low]);
+                low++;
             }
             else{
-                arr[k++]=rightarray[j++];
-                count+=(mid+1-left)-i;
+                temp.add(arr[high]);
+                count+=mid+1-low;
+                high++;
             }
         }
-        while(i<leftlength){
-            arr[k++]=leftarray[i++];
-        }
-        while(j<rightlength){
-            arr[k++]=rightarray[j++];
+     while(low<=mid){
+            temp.add(arr[low]);
+            low++;
+            
+        } 
+        while(high<=right){
+            temp.add(arr[high]);
+            high++;
+        } 
+        for(int i=left;i<=right;i++){
+            arr[i]=temp.get(i-left);
         }
         return count;
     }
