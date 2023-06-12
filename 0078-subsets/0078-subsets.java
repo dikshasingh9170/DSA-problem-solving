@@ -1,3 +1,5 @@
+//T.c 2^n
+//s.c n
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res=new ArrayList<>();
