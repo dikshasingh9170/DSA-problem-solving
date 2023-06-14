@@ -119,14 +119,14 @@ class Node
 }*/
 public class Solution {
     public static void removeLoop(Node head){
-        if(head==null || head.next==null){
+        if(head==null){
             return;
         }
         Node slow=head;
         Node fast=head;
         while(fast.next!=null && fast.next.next!=null){
-            fast=fast.next.next;
             slow=slow.next;
+            fast=fast.next.next;
             if(slow==head){
                 while(fast.next!=slow){
                     fast=fast.next;
@@ -136,8 +136,8 @@ public class Solution {
             else if(slow==fast){
                 slow=head;
                 while(slow.next!=fast.next){
-                    slow=slow.next;
                     fast=fast.next;
+                    slow=slow.next;
                 }
                 fast.next=null;
             }
