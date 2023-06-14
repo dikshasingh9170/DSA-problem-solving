@@ -1,8 +1,5 @@
 class Solution {
     public int mySqrt(int x) {
-        if(x==1){
-            return 1;
-        }
         double l = 0, h = x;double m=0.0;int res=0;
         while (l<=h)
         {
