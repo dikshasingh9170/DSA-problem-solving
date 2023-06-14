@@ -15,13 +15,13 @@ import java.util.*;
 //User function Template for Java
 
 
-
+//nlog(n)
 class Solution
 {
     long countTriplets(long arr[], int n,int sum)
     {
         Arrays.sort(arr);int count=0;
-        for(int i=0;i+2<n;i++){
+        for(int i=0;i<n;i++){
             int j=i+1;int k=n-1;
             while(j<k){
                 long x=arr[i];
