@@ -1,19 +1,25 @@
 class Solution {
-    static double eps = 1e-6;
     public int mySqrt(int x) {
-        double l = 1, h = x, m=0;
-        while (h - l > eps)
+        if(x==1){
+            return 1;
+        }
+        double l = 0, h = x;double m=0.0;int res=0;
+        while (l<=h)
         {
-            m = (l + h) / 2;
+            m =Math.floor(l+(h-l)/2);
             if (m * m < x)
             {
-                l = m;
+                l = m+1;
+                res=(int)m;
             }
-            else
+            else if(m*m>x)
             {
-                h = m;
+                h = m-1;
+            }
+            else{
+                return (int)m;
             }
         }
-        return (int)h;
+        return res;
     }
 }
