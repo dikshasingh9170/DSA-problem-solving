@@ -7,7 +7,7 @@ class Solution {
         {
             for(int j=0;j<i;j++)
             {
-                if(check[j]&&words.contains(s.substring(j,i)))
+                if(check[j] && words.contains(s.substring(j,i)))
                 {
                     check[i]=true;
                      break;
