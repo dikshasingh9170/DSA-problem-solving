@@ -30,23 +30,18 @@ class Solution {
         }
     }
     public boolean checkValid(List<String> board, int row, int col, int size) {
-        // Check straight up
         for (int i = row - 1; i >= 0; i--) {
             if (board.get(i).charAt(col) == 'Q') {
                 return false;
             }
         }
-
-        // Check diagonals
         for (int i = 1; i <= row; i++) {
             if (col - i >= 0) {
-                // Left diagonal
                 if (board.get(row - i).charAt(col - i) == 'Q') {
                     return false;
                 }
             }
             if (col + i < size) {
-                // Right diagonal
                 if (board.get(row - i).charAt(col + i) == 'Q') {
                     return false;
                 }
