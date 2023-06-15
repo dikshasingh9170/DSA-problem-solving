@@ -34,16 +34,16 @@ class Solution {
     static  ArrayList<String> res;
     
     public static ArrayList<String> findPath(int[][] m, int n) {
-        boolean[][] vis=new boolean[n][n];
         res=new ArrayList<String>();
         if(m[0][0]==0){
             return res;
         }
+        boolean[][] vis=new boolean[n][n];
         String s="";
-        findpaths(0,0,m,n,vis,s);
+        solve(0,0,n,m,s,vis);
         return res;
     }
-    public static void findpaths(int i,int j,int[][] m,int n,boolean[][] vis,String s){
+    public static void solve(int i,int j,int n,int[][] m,String s,boolean[][] vis){
         if(i<0 || j<0 || i>n-1 || j>n-1 || m[i][j]==0 || vis[i][j]==true){
             return;
         }
@@ -52,11 +52,12 @@ class Solution {
             return;
         }
         vis[i][j]=true;
-        findpaths(i+1,j,m,n,vis,s+'D');
-        findpaths(i-1,j,m,n,vis,s+'U');
-        findpaths(i,j-1,m,n,vis,s+'L');
-        findpaths(i,j+1,m,n,vis,s+'R');
+        solve(i+1,j,n,m,s+'D',vis);
+        solve(i-1,j,n,m,s+'U',vis);
+        solve(i,j+1,n,m,s+'R',vis);
+        solve(i,j-1,n,m,s+'L',vis);
         vis[i][j]=false;
+        
         return;
     }
 }
