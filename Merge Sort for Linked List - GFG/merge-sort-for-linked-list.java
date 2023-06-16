@@ -78,29 +78,15 @@ class Solution
         if(head==null || head.next==null){
             return head;
         }
-        
-        Node mid=findMid(head);
-        
+        Node mid=getMid(head);
         Node left=head;
         Node right=mid.next;
         mid.next=null;
-        
         left=mergeSort(left);
         right=mergeSort(right);
-        
         Node res=merge(left,right);
-        
         return res;
-    }
-    static Node findMid(Node head){
-        Node slow=head;
-        Node fast=head;
-        while(fast.next!=null && fast.next.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-        }
-        return slow;
-    }
+    } 
     static Node merge(Node left,Node right){
         if(left==null){
             return right;
@@ -108,18 +94,18 @@ class Solution
         if(right==null){
             return left;
         }
-        Node ans=new Node(-1);
+        Node ans=new Node(0);
         Node temp=ans;
         while(left!=null && right!=null){
             if(left.data<right.data){
                 temp.next=left;
-                temp=temp.next;
                 left=left.next;
+                temp=temp.next;
             }
             else{
                 temp.next=right;
-                temp=temp.next;
                 right=right.next;
+                temp=temp.next;
             }
         }
         if(left!=null){
@@ -129,6 +115,15 @@ class Solution
             temp.next=right;
         }
         return ans.next;
+    }
+    static Node getMid(Node head){
+        Node slow=head;
+        Node fast=head;
+        while(fast.next!=null && fast.next.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        return slow;
     }
 }
 
