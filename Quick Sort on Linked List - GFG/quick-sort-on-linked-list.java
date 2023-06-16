@@ -81,8 +81,7 @@ class GfG
 {
     public static Node quickSort(Node node)
     {
-        if(node==null || node.next==null)
-        {
+        if(node==null || node.next==null){
             return node;
         }
         Node start=node;
@@ -92,7 +91,7 @@ class GfG
         }
         sort(start,end);
         return node;
-    }
+    } 
     public static void sort(Node start,Node end){
         if(start==end){
             return;
@@ -102,9 +101,9 @@ class GfG
         sort(prev.next,end);
     }
     public static Node partition(Node start,Node end){
-        Node prev=start;
-        Node current=start;
         int pivot=end.data;
+        Node current=start;
+        Node prev=start;
         while(start!=end){
             if(start.data<pivot){
                 prev=current;
@@ -115,14 +114,23 @@ class GfG
             }
             start=start.next;
         }
-        int temp=current.data;
-        current.data=end.data;
-        end.data=temp;
-        
+        int temp=end.data;
+        end.data=current.data;
+        current.data=temp;
         return prev;
     }
 }
 
-   
-
-   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
