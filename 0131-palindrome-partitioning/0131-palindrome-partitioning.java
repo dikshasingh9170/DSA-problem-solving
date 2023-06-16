@@ -20,7 +20,6 @@ class Solution {
             }
         }
     }
-
     private boolean isPalindrome(String str) {
         int start = 0;
         int end = str.length() - 1;
