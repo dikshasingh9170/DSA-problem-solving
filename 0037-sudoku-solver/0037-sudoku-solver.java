@@ -24,8 +24,7 @@ class Solution {
         }
         return false;
     }
-
-    private boolean isValidPlacement(char[][] board, int row, int col, char num) {
+private boolean isValidPlacement(char[][] board, int row, int col, char num) {
         for (int i = 0; i < board.length; i++) {
             if (board[i][col] == num) {
                 return false;
