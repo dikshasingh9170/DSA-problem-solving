@@ -1,46 +1,76 @@
 class Solution {
     public List<String> removeInvalidParentheses(String s) {
-        List<String> ans=new ArrayList<>();
-        HashSet<String> set=new HashSet<String>();
-        
-        int minBracket=removeBracket(s);
-        getAns(s, minBracket,set,ans);
-        
-        return ans;
+        List<String> res=new ArrayList<>();
+        HashSet<String> hs=new HashSet<String>();
+        int min=removebracket(s);
+        System.out.println(min);
+        solve(min,s,res,hs);
+        return res;
     }
-    
-    public void getAns(String s, int minBracket, HashSet<String> set, List<String> ans){
-        if(set.contains(s)) return;
+    public void solve(int min,String s,List<String> res,HashSet<String> hs){
+        if(hs.contains(s))return;
         
-        set.add(s);
+        hs.add(s);
         
-        if(minBracket==0){
-            int remove=removeBracket(s);   
-            if(remove==0) ans.add(s);
+        if(min==0){
+            int remove=removebracket(s);   
+            if(remove==0) res.add(s);
             return;
         }
         
         for(int i=0;i<s.length();i++){
-            if(s.charAt(i)!='(' && s.charAt(i)!=')') continue;
+            if(s.charAt(i)!='(' && s.charAt(i)!=')')continue;
             String L=s.substring(0,i);
             String R=s.substring(i+1);
-            
-            if(!set.contains(L+R)) getAns(L+R,minBracket-1,set,ans);
+            if(!hs.contains(L+R)){
+                System.out.println(L+R+" "+min);
+                solve(min-1,L+R,res,hs);
+            }
         }
     }
-    
-    public int removeBracket(String s){
-        Stack<Character> stack=new Stack<>();
-        
+    public int removebracket(String s){
+        Stack<Character> st=new Stack<Character>();
         for(int i=0;i<s.length();i++){
             char x=s.charAt(i);
-            
-            if(x=='(') stack.push(x);
+            if(x=='('){
+                st.push(x);
+            }
             else if(x==')'){
-                if(!stack.isEmpty() && stack.peek()=='(') stack.pop();
-                else stack.push(x);
-            } 
+                if(!st.isEmpty() && st.peek()=='('){
+                    st.pop();
+                }
+                else{
+                    st.push(x);
+                }
+            }
         }
-        return stack.size();
+        return st.size();
     }
 }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
