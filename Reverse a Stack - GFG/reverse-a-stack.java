@@ -50,7 +50,10 @@ class Solution
         if (s.isEmpty()) {
 			return;
 		}
-		reversest(s);
+		int x = s.peek();
+        s.pop();
+        reverse(s);
+        insert_at_bottom(s,x);
     }
     public static void insert_at_bottom(Stack<Integer> st,int x)
     {
@@ -62,15 +65,6 @@ class Solution
             st.pop();
             insert_at_bottom(st,x);
             st.push(a);
-        }
-    }
-    public static void reversest(Stack<Integer> st)
-    {
-        if (st.size() > 0) {
-            int x = st.peek();
-            st.pop();
-            reversest(st);
-            insert_at_bottom(st,x);
         }
     }
 }
