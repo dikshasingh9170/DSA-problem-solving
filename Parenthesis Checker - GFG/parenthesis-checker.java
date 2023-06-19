@@ -32,44 +32,43 @@ class Driverclass
 
 
 
-
 class Solution
 {
     //Function to check if brackets are balanced or not.
     static boolean ispar(String x)
     {
-        String s=x;
-        Stack<Character> st=new Stack<Character>();
-        if(s.length()==0){
+        if(x==""){
             return true;
         }
-        st.push(s.charAt(0));char z=0;int flag=0;
-        for(int i=1;i<s.length();i++){
-            if(!st.isEmpty()){
-                z=st.pop();
-                if(s.charAt(i)==')' && z=='('){
-                    continue;
+        Stack<Character> st=new Stack<Character>();
+        for(int i=0;i<x.length();i++){
+            if(st.isEmpty()==false){
+                char a=st.peek();
+                if(x.charAt(i)=='(' || x.charAt(i)=='{' || x.charAt(i)=='['){
+                    st.push(x.charAt(i));
                 }
-                else if(s.charAt(i)=='}' && z=='{'){
-                    continue;
+                else if(a=='(' || a=='{' || a=='['){
+                    if(a=='(' && x.charAt(i)==')'){
+                        st.pop();
+                    }
+                    else if(a=='{' && x.charAt(i)=='}'){
+                        st.pop();
+                    }
+                    else if(a=='[' && x.charAt(i)==']'){
+                        st.pop();
+                    }
+                    else{
+                        st.push(x.charAt(i));
+                    }
                 }
-                else if(s.charAt(i)==']' && z=='['){
-                    continue;
+                else{
+                    st.push(x.charAt(i));
                 }
-                else if(s.charAt(i)==')' || s.charAt(i)==']' || s.charAt(i)=='}'){
-                    return false;
-                }
-                st.push(z);
-                st.push(s.charAt(i));
-                z=0;
             }
             else{
-                st.push(s.charAt(i));
+                st.push(x.charAt(i));
             }
         }
-            if(st.size()==0){
-            return true;
-            }
-        return false;
+        return st.isEmpty();
     }
 }
