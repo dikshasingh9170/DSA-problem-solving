@@ -1,31 +1,31 @@
+//O(n^3) space O(1);
 class Solution {
     public List<List<Integer>> fourSum(int[] nums, int target) {
-        int n=nums.length;
-        List<List<Integer>> res=new ArrayList<List<Integer>>();
         Arrays.sort(nums);
-        for(int i=0;i<n;i++){
+        List<List<Integer>> res=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
             if(i>0 && nums[i]==nums[i-1])continue;
-            for(int j=i+1;j<n;j++){
+            for(int j=i+1;j<nums.length;j++){
                 if(j>i+1 && nums[j]==nums[j-1])continue;
-                int l=j+1;int k=n-1;
+                int l=j+1;int k=nums.length-1;
                 while(l<k){
-                    long x=nums[i];
-                        x+=nums[j];
-                        x+=nums[k];
-                        x+=nums[l];
-                    if(x==target){
-                        List<Integer> ans=new ArrayList<Integer>();
-                        ans.add(nums[i]);
-                        ans.add(nums[j]);
-                        ans.add(nums[k]);
-                        ans.add(nums[l]);
-                        res.add(ans);
+                    long sum=nums[i];
+                    sum+=nums[j];
+                    sum+=nums[l];
+                    sum+=nums[k];
+                    if(sum==target){
+                        ArrayList<Integer> arr=new ArrayList<Integer>();
+                        arr.add(nums[i]);
+                        arr.add(nums[j]);
+                        arr.add(nums[l]);
+                        arr.add(nums[k]);
+                        res.add(arr);
                         l++;
                         k--;
                         while(l<k && nums[l]==nums[l-1])l++;
                         while(l<k && nums[k]==nums[k+1])k--;
                     }
-                    else if(x<target){
+                    else if(sum<target){
                         l++;
                     }
                     else{
@@ -37,3 +37,31 @@ class Solution {
         return res;
     }
 }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
