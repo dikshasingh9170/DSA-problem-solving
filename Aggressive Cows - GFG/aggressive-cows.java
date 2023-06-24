@@ -37,10 +37,10 @@ class Solution {
         Arrays.sort(stalls);
         int s=0;
         int maxi=-1;
-        for(int i=0;i<n;i++){
+        /*for(int i=0;i<n;i++){
             maxi=Math.max(maxi,stalls[i]);
-        }
-        int e=maxi;
+        }*/
+        int e=stalls[n-1];
         int ans=-1;
         int mid=s+(e-s)/2;
         while(s<=e){
