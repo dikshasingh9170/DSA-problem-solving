@@ -1,4 +1,4 @@
-/*class Solution {
+class Solution {
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
         int n = startTime.length;
         int[][] jobs = new int[n][3];
@@ -15,8 +15,8 @@
         }
         return dp.lastEntry().getValue();
     }
-}*/
-class Solution {
+}
+/*class Solution {
     private Map<Integer, Integer> dp;
     
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
@@ -70,4 +70,4 @@ class JobComparator implements Comparator<Job>{
     public int compare(Job a,Job b){
         return a.finish<b.finish?-1:a.finish==b.finish?0:1;
     }
-}
+}*/
