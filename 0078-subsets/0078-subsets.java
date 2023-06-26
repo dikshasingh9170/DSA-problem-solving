@@ -3,18 +3,18 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res=new ArrayList<>();
-        ArrayList<Integer> arr=new ArrayList<Integer>();
-        powerset(0,nums,res,arr);
+        List<Integer> arr=new ArrayList<>();
+        solve(0,nums,arr,res);
         return res;
     }
-    public void powerset(int i,int[] nums, List<List<Integer>> res,ArrayList<Integer> arr){
+    public void solve(int i,int[] nums,List<Integer> arr,List<List<Integer>> res){
         if(i==nums.length){
             res.add(new ArrayList<>(arr));
             return;
         }
         arr.add(nums[i]);
-        powerset(i+1,nums,res,arr);
+        solve(i+1,nums,arr,res);
         arr.remove(arr.size()-1);
-        powerset(i+1,nums,res,arr);
+        solve(i+1,nums,arr,res);
     }
 }
