@@ -8,11 +8,11 @@ class Solution {
     }
     public void powerset(int i,int[] nums, List<List<Integer>> res,ArrayList<Integer> arr){
         res.add(new ArrayList<>(arr));
-        for(int index = i;index<nums.length;index++) {
-            if(index!=i && nums[index] == nums[index-1]) continue; 
-            arr.add(nums[index]); 
-            powerset(index+1, nums, res, arr); 
-            arr.remove(arr.size() - 1);
+        for(int index=i;index<nums.length;index++){
+            if(index!=i && nums[index]==nums[index-1])continue;
+            arr.add(nums[index]);
+            powerset(index+1,nums,res,arr);
+            arr.remove(arr.size()-1);
         }
         /*if(i==nums.length){
             
