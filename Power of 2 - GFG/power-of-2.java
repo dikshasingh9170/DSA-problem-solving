@@ -37,10 +37,8 @@ class Driver_class
 //User function Template for Java
 
 class Solution{
-    
-
     public static boolean isPowerofTwo(long n){
-        if (n == 0)
+        /*if (n == 0)
             return false;
  
         while (n != 1) {
@@ -48,6 +46,8 @@ class Solution{
                 return false;
             n = n>>1;
         }
-        return true;
+        return true;*/
+        if(n<=0) return false;
+        return ((n&(n-1))==0);
     }
 }
