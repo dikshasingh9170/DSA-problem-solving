@@ -13,7 +13,7 @@
  *     }
  * }
  */
-class Solution {
+/*class Solution {
      public ArrayList<Integer> arr=new ArrayList<Integer>();
     public List<Integer> preorderTraversal(TreeNode root) {
         solve(root);
@@ -26,5 +26,24 @@ class Solution {
         arr.add(root.val);
         solve(root.left);
         solve(root.right);
+    }
+}*/
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();   
+        Stack<TreeNode> stack = new Stack<>();  
+        TreeNode node=root;                 
+        while(!stack.isEmpty() || node!=null){
+            if(node!=null){
+                stack.push(node);
+                result.add(node.val);
+                node=node.left;
+            }
+            else{
+                node=stack.pop();
+                node=node.right;
+            }
+        }
+        return result;
     }
 }
