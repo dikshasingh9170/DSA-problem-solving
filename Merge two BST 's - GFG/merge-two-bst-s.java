@@ -123,20 +123,46 @@ class Solution
 {
     //Function to return a list of integers denoting the node 
     //values of both the BST in a sorted order.
-    public ArrayList<Integer> arr=new ArrayList<>();
+    public ArrayList<Integer> arr1=new ArrayList<>();
+    public ArrayList<Integer> arr2=new ArrayList<>();
+    public ArrayList<Integer> arr3=new ArrayList<>();
     public List<Integer> merge(Node root1,Node root2)
     {
-        inorder(root1);
-        inorder(root2);
-        Collections.sort(arr);
-        return arr;
+        inorder(root1,arr1);
+        inorder(root2,arr2);
+        int m=arr1.size(),n=arr2.size(),i=0,j=0;
+        while(i<m && j<n)
+        {
+            if(arr1.get(i)<arr2.get(j))
+            {
+                arr3.add(arr1.get(i));
+                i++;
+            }
+            else
+            {
+                arr3.add(arr2.get(j));
+                j++;
+            }
+        }
+        while(i<m)
+        {
+            arr3.add(arr1.get(i));
+                i++;
+        }
+        while(j<n)
+        {
+            arr3.add(arr2.get(j));
+                j++;
+        }
+        return arr3;
+
     }
-    public void inorder(Node root1){
+    public void inorder(Node root1,ArrayList<Integer> arr){
         if(root1==null){
             return;
         }
-        inorder(root1.left);
+        inorder(root1.left,arr);
         arr.add(root1.data);
-        inorder(root1.right);
+        inorder(root1.right,arr);
     }
 }
