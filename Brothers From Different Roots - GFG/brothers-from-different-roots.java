@@ -32,13 +32,14 @@ class Node
 }
 */
 
-/*class Solution
+class Solution
 {
-    public static ArrayList<Integer> arr1=new ArrayList<>();
-    public static ArrayList<Integer> arr2=new ArrayList<>();
+   
 	public static int countPairs(Node root1, Node root2, int x)
 	{
 		// Code here
+		 ArrayList<Integer> arr1=new ArrayList<>();
+        ArrayList<Integer> arr2=new ArrayList<>();
 		inorder(root1,arr1);
         inorder(root2,arr2);
         int i=0;int j=arr2.size()-1;int count=0;
@@ -52,7 +53,7 @@ class Node
             else if(sum<x){
                 i++;
             }
-            else{
+            else if(sum>x){
                 j--;
             }
         }
@@ -66,49 +67,7 @@ class Node
         arr.add(root1.data);
         inorder(root1.right,arr);
     }
-}*/
-class Solution
-{
-    private static void addNodes(Node root,ArrayList<Integer> list){
-    
-        if(root == null)return;
-        
-        addNodes(root.left,list);
-        list.add(root.data);
-        addNodes(root.right,list);
-        
-    }
-    
-	public static int countPairs(Node root1, Node root2, int x) {
-	    
-        ArrayList<Integer> list1 = new ArrayList<>();
-        ArrayList<Integer> list2 = new ArrayList<>();
-        
-        addNodes(root1,list1);
-        addNodes(root2,list2);
-        
-        int count = 0;
-        int i = 0;
-        int j = list2.size()-1;
-        
-        while(i<list1.size() && j >= 0){
-        
-            int sum = list1.get(i) + list2.get(j);
-            
- if(sum == x) {
-                count++;
-                i++;j--;
-            }
-            
-            else if(sum < x) i++;
-            else if(sum > x)j--;
-        }
-        
-        return count;
-        
-	}
 }
-
 
 //{ Driver Code Starts.
 
