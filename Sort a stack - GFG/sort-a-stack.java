@@ -32,7 +32,7 @@ class GfG{
 	    return s;
 	}
 	void sorts(Stack<Integer> s) {
-	   	if(s.size() == 1) return;
+	   	if(s.size() == 0) return;
 		
 		int temp = s.pop();
 		sort(s);
