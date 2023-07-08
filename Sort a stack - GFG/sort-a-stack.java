@@ -32,8 +32,7 @@ class GfG{
 	    return s;
 	}
 	void sorts(Stack<Integer> s) {
-	   	if(s.size() == 0) return;
-		
+	   	if(s.isEmpty()) return;
 		int temp = s.pop();
 		sort(s);
 		insert(s,temp); 
@@ -43,7 +42,6 @@ class GfG{
 	        s.push(ele);
 	        return;
 	    }
-	    
 	    int temp = s.pop();
 	    insert(s,ele);
 	    s.push(temp);
