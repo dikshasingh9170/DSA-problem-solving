@@ -26,19 +26,19 @@ class GfG {
 
 class Solution {
     public long count(int coins[], int N, int sum) {
-        long[] dp = new long[sum + 1];
-        Arrays.fill(dp,0);
-        dp[0]=1;
-        for (int i = 0; i <N; i++) {
-            for (int w = coins[i]; w<=sum; w++) {
-                if (coins[i] <= w){
-                    dp[w]=dp[w]+dp[w-coins[i]];
+        int amount=sum;
+	    long[][] t=new long[N+1][amount+1];
+        for(int i=0;i<=N;i++){
+            t[i][0]=1;
+        }
+        for(int i=1;i<=N;i++){
+            for(int j=0;j<=amount;j++){
+                t[i][j]=t[i-1][j];
+                if(coins[i-1]<=j){
+                    t[i][j]+=t[i][j-coins[i-1]];
                 }
             }
         }
-        return dp[sum]; 
+        return t[N][amount];
     }
 }
-
-
-
