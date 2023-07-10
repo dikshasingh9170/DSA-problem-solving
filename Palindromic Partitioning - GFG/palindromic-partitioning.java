@@ -40,7 +40,23 @@ class Solution{
         }
         int min=Integer.MAX_VALUE;
         for(int k=i;k<=j-1;k++){
-            int temp=solve(S,i,k,t)+solve(S,k+1,j,t)+1;
+            int left=0,right=0;
+            if(t[i][k]!=0){
+                left=t[i][k];
+            }
+            else{
+                left=solve(S,i,k,t);
+                t[i][k]=left;
+            }
+            
+            if(t[k+1][j]!=0){
+                right=t[k+1][j];
+            }
+            else{
+                right=solve(S,k+1,j,t);
+                t[k+1][j]=right;
+            }
+            int temp=left+right+1;
             min=Math.min(temp,min);
         }
         return t[i][j]=min;
