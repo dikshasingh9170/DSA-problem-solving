@@ -1,11 +1,4 @@
-class Pair{
-    int first;
-    int second;
-    Pair(int fst,int scnd){
-        this.first=fst;
-        this.second=scnd;
-    }
-}
+
 class Solution {
     public int numIslands(char[][] grid) {
         int n=grid.length;
