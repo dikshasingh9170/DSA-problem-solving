@@ -3,8 +3,8 @@ class Solution {
         
         if (connections.length < n - 1) return -1;
         
-        List<Set<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < n; i++) graph.add(new HashSet<>());
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
         for (int[] connection : connections) {
             int u = connection[0], v = connection[1];
             graph.get(u).add(v);
@@ -23,7 +23,7 @@ class Solution {
         return components - 1;
     }
     
-    private void dfs(int node, List<Set<Integer>> graph, int[] visited) {
+    private void dfs(int node, List<List<Integer>> graph, int[] visited) {
         if (visited[node] != 0) return;
         visited[node] = 1;
         for (int neighbor : graph.get(node)) dfs(neighbor, graph, visited);
