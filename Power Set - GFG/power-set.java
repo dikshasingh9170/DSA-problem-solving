@@ -32,7 +32,6 @@ class Solution
 {
     public List<String> AllPossibleStrings(String s)
     {
-        // Code here
         int n=s.length();
          List<String> ans=new ArrayList<>();
         
@@ -44,7 +43,6 @@ class Solution
                     sub+=s.charAt(bit);
                 }    
              }
-            
             if(sub.length()>0){
                 ans.add(sub);
              }
