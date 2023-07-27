@@ -104,29 +104,18 @@ class Node
 }
 */
 
-/*class Solution
+class Solution
 {
     //Function to remove a loop in the linked list.
     public static void removeLoop(Node head){
-        Node curr=null;
-        while (head != null) {
-            if (head.data == 1000000) curr.next=null;
-            head.data = 1000000;
-            curr=head;
-            head = head.next;
-        }
-    }
-}*/
-public class Solution {
-    public static void removeLoop(Node head){
-        if(head==null){
+        if(head==null || head.next==null){
             return;
         }
         Node slow=head;
         Node fast=head;
         while(fast.next!=null && fast.next.next!=null){
-            slow=slow.next;
             fast=fast.next.next;
+            slow=slow.next;
             if(slow==head){
                 while(fast.next!=slow){
                     fast=fast.next;
@@ -135,7 +124,7 @@ public class Solution {
             }
             else if(slow==fast){
                 slow=head;
-                while(slow.next!=fast.next){
+                while(fast.next!=slow.next){
                     fast=fast.next;
                     slow=slow.next;
                 }
