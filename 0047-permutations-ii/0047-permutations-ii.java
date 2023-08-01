@@ -17,7 +17,7 @@ class Solution {
             return;
         }
         for(int j=i;j<nums.length;j++){
-            //if(i!=j && nums[j-1]==nums[j])continue;
+            if(i!=j && nums[j-1]==nums[j])continue;
             swap(j,i,nums);
             solve(i+1,nums,res);
             swap(j,i,nums);
