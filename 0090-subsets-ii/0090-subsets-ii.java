@@ -14,7 +14,9 @@ class Solution {
             powerset(index+1,nums,res,arr);
             arr.remove(arr.size()-1);
         }
-        /*if(i==nums.length){
+    }
+}
+ /*if(i==nums.length){
             
                 res.add(new ArrayList<>(arr));
             return;
@@ -27,5 +29,3 @@ class Solution {
             i++;
         }
         powerset(i+1,nums,res,arr);*/
-    }
-}
