@@ -73,20 +73,32 @@ class Node
 
 class Solution
 {
+    //Function to sort the given linked list using Merge Sort.
     static Node mergeSort(Node head)
     {
         if(head==null || head.next==null){
-            return head;
+            return head; 
         }
-        Node mid=getMid(head);
+        
+        Node mid=findmid(head);
         Node left=head;
         Node right=mid.next;
         mid.next=null;
+        
         left=mergeSort(left);
         right=mergeSort(right);
         Node res=merge(left,right);
         return res;
-    } 
+    }
+    static Node findmid(Node head){
+        Node slow=head;
+        Node fast=head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
     static Node merge(Node left,Node right){
         if(left==null){
             return right;
@@ -94,7 +106,7 @@ class Solution
         if(right==null){
             return left;
         }
-        Node ans=new Node(0);
+        Node ans=new Node(-1);
         Node temp=ans;
         while(left!=null && right!=null){
             if(left.data<right.data){
@@ -115,15 +127,6 @@ class Solution
             temp.next=right;
         }
         return ans.next;
-    }
-    static Node getMid(Node head){
-        Node slow=head;
-        Node fast=head;
-        while(fast.next!=null && fast.next.next!=null){
-            fast=fast.next.next;
-            slow=slow.next;
-        }
-        return slow;
     }
 }
 
