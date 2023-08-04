@@ -1,10 +1,10 @@
 # Add 1 to a number represented as linked list
-## Easy
+## Medium
 <div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">A number&nbsp;<strong>N</strong>&nbsp;is represented in Linked List such that each digit corresponds to a node in linked list. You need to add 1 to it.</span></p>
 <p><span style="font-size: 18px;"><strong>Example 1:</strong></span></p>
 <pre><span style="font-size: 18px;"><strong>Input:
 </strong>LinkedList: 4-&gt;5-&gt;6
-<strong>Output: </strong>457&nbsp;</span>
+<strong>Output: </strong>457<br>Explanation: 4-&gt;5-&gt;6 represents 456 and when 1 is added it becomes 457. </span>
 </pre>
 <p><span style="font-size: 18px;"><strong>Example 2:</strong></span></p>
 <pre><span style="font-size: 18px;"><strong>Input:
