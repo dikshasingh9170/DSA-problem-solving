@@ -83,9 +83,10 @@ class Sol
 {
    public static Node findIntersection(Node head1, Node head2)
     {
-        Node p1=head1;Node p2=head2;
-        Node dummy=new Node(0);
-        Node curr=dummy;
+        Node p1=head1;
+        Node p2=head2;
+        Node temp=new Node(0);
+        Node curr=temp;
         while(p1!=null && p2!=null){
             if(p1.data==p2.data){
                 curr.next=new Node(p1.data);
@@ -100,6 +101,6 @@ class Sol
                 p1=p1.next;
             }
         }
-        return dummy.next;
+        return temp.next;
     }
 }
