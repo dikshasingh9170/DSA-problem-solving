@@ -78,20 +78,21 @@ class Node
 You can also use the following for printing the link list.
 Node.printList(Node node);
 */
+
 class Solution {
     public static Node moveToFront(Node head) {
         if(head==null || head.next==null) 
             return head;
+
         Node curr=head;
-        Node prev=null;
-        while(curr.next!=null){
-            prev=curr;
+        while(curr.next.next!=null){
             curr=curr.next;
         }
-        prev.next=null;
-        curr.next=head;
-        head=curr;
-        
+        Node last=curr.next;
+        curr.next=null;
+        last.next=head;
+        head=last;
         return head;
     }
 }
+        
