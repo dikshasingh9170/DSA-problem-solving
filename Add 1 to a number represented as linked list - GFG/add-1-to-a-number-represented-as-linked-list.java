@@ -60,31 +60,36 @@ class Node{
 
 class Solution
 {
-    public static Node addOne(Node head) {
+    public static Node addOne(Node head) 
+    { 
         if(head==null){
-            return null;
+            return head;
         }
-        Node rev=reverse1(head);
-        Node temp=rev;
+        if(head.next==null){
+            head.data+=1;
+            return head;
+        }
+        Node temp=reverse(head);
+        Node rev=temp;
         while(rev!=null){
             if(rev.data<9){
                 rev.data+=1;
-                return reverse1(temp);
+                return reverse(temp);
             }
             rev.data=0;
             rev=rev.next;
         }
-        Node nNode=new Node(1);
-        nNode.next=temp;
-        return nNode;
+        Node nnode=new Node(1);
+        nnode.next=temp;
+        return nnode;
     }
-    public static Node reverse1(Node head){
+    public static Node reverse(Node head){
         Node prev=null;
         while(head!=null){
-            Node temp=head.next;
+            Node next=head.next;
             head.next=prev;
             prev=head;
-            head=temp;
+            head=next;
         }
         return prev;
     }
