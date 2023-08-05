@@ -74,7 +74,6 @@ class Node
 }*/
 
 class GfG{
- 
    public long multiplyTwoLists(Node l1,Node l2){
          long num1 = 0 , num2 = 0;
            int mod = 1000000007;
@@ -91,4 +90,3 @@ class GfG{
           return ans;
    }
 }
-
