@@ -129,18 +129,18 @@ class GfG
 	    return root;
     }
     Node merge(Node a,Node b){
-        Node temp=new Node(0);
+        Node temp=new Node(-1);
         Node res=temp;
         while(a!=null && b!=null){
             if(a.data<b.data){
                 temp.bottom=a;
-                temp=temp.bottom;
                 a=a.bottom;
+                temp=temp.bottom;
             }
             else{
                 temp.bottom=b;
-                temp=temp.bottom;
                 b=b.bottom;
+                temp=temp.bottom;
             }
         }
         if(a!=null){
