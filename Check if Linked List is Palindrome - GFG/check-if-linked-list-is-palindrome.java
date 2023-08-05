@@ -108,9 +108,6 @@ class Solution
             slow=slow.next;
             fast=fast.next.next;
         }
-        if(fast!=null){
-            slow=slow.next;
-        }
         Node first=head;
         Node second=reverse(slow);
         while(second!=null){
