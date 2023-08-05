@@ -7,58 +7,49 @@ class GFG
     public static void main(String[] args) throws IOException
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out=new PrintWriter(System.out);
         int T = Integer.parseInt(br.readLine().trim());
         while(T-->0)
         {
             String A = br.readLine().trim();
             Solution ob = new Solution();
             String ans = ob.FirstNonRepeating(A);
-            System.out.println(ans);
+            out.println(ans);
         }
+        out.close();
     }
 }
 
 // } Driver Code Ends
 
+
 class Solution
 {
     public String FirstNonRepeating(String A)
     {
-          StringBuilder sb=new StringBuilder("");
-          
-          Map<Character,Integer> map=new LinkedHashMap<>();
-          int i=0;
-          
-          while(i<A.length())
-          {
-              char c=A.charAt(i);
-              if(!map.containsKey(c))
-              {
-                  map.put(c,1);
-              }
-              else
-              {
-                  map.put(c,map.get(c)+1);
-              }
-              int flg=0;
-              
-              for(Character t : map.keySet())
-              {
-                  if(map.get(t)==1)
-                  {
-                      sb.append(t);
-                      flg=1;
-                      break;
-                  }
-              }
-              
-              if(flg==0)
-              {
-                  sb.append("#");
-              }
-              i++;
-          }
-          
-          return sb.toString();
+        StringBuilder s=new StringBuilder("");
+        Map<Character,Integer> hm=new LinkedHashMap<>();
+        int i=0;
+        while(i<A.length()){
+            if(!hm.containsKey(A.charAt(i))){
+                hm.put(A.charAt(i),1);
+            }
+            else{
+                hm.put(A.charAt(i),hm.get(A.charAt(i))+1);
+            }
+            int flg=0;
+            for(Character t:hm.keySet()){
+                if(hm.get(t)==1){
+                    s.append(t);
+                    flg=1;
+                    break;
+                }
+            }
+            if(flg==0){
+                s.append('#');
+            }
+            i++;
+        }
+        return s.toString();
     }
 }
