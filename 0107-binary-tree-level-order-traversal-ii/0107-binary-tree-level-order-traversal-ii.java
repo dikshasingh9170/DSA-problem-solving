@@ -15,7 +15,6 @@
  */
 class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        Stack<ArrayList<Integer>> st=new Stack<ArrayList<Integer>>();
         List<List<Integer>> res=new ArrayList<>();
         if(root==null){
             return res;
