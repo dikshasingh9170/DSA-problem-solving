@@ -126,34 +126,34 @@ class GFG
     //Function to store the zig zag order traversal of tree in a list.
 	ArrayList<Integer> zigZagTraversal(Node root)
 	{
-	    //Add your code here.
-	    ArrayList<Integer> res=new ArrayList<>();
-        if(root==null){
-            return res;
-        }
-        Queue<Node> q=new LinkedList<Node>();
-        q.add(root);boolean ltor=true;
-        while(!q.isEmpty()){
-            int size=q.size();
-            ArrayList<Integer> ans=new ArrayList<Integer>();
-            for(int i=0;i<size;i++){
-                Node curr=q.poll();
-                ans.add(curr.data);
-                if(curr.left!=null){
-                    q.add(curr.left);
-                }
-                if(curr.right!=null){
-                    q.add(curr.right);
-                }
-            }
-            if(!ltor){
-                Collections.reverse(ans);
-            }
-            for(int i=0;i<ans.size();i++){
-                res.add(ans.get(i));
-            }
-            ltor=!ltor;
-        }
-        return res;
+	    Queue<Node> q=new LinkedList<>();
+	    ArrayList<Integer> arr=new ArrayList<Integer>();
+	    if(root==null){
+	        return arr;
+	    }
+	    boolean ltor=true;
+	    q.add(root);
+	    while(!q.isEmpty()){
+	        ArrayList<Integer> res=new ArrayList<Integer>();
+	        int size=q.size();
+	        for(int i=0;i<size;i++){
+	            Node curr=q.poll();
+	            res.add(curr.data);
+	            if(curr.left!=null){
+	                q.add(curr.left);
+	            }
+	            if(curr.right!=null){
+	                q.add(curr.right);
+	            }
+	        }
+	        if(!ltor){
+	            Collections.reverse(res);
+	        }
+	        for(int i=0;i<res.size();i++){
+	            arr.add(res.get(i));
+	        }
+	        ltor=!ltor;
+	    }
+	    return arr;
 	}
 }
