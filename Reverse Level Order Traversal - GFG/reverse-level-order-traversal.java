@@ -128,23 +128,21 @@ class Tree
 {
     public ArrayList<Integer> reverseLevelOrder(Node node) 
     {
-      ArrayList<Integer> ans=new ArrayList();
-      Queue<Node> queue=new LinkedList<Node>();
-      queue.offer(node);
-      while(!queue.isEmpty())
-      {
-          Node root=queue.peek();
-          ans.add(root.data);
-          queue.poll();
-          
-          if(root.right!=null)
-          queue.offer(root.right);
-         
-          if(root.left!=null)
-          queue.offer(root.left);
-          
-      }
-      Collections.reverse(ans);
-      return ans;
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+        Queue<Node> q=new LinkedList<>();
+        q.add(node);
+        while(!q.isEmpty()){
+            Node x=q.poll();
+            arr.add(x.data);
+            if(x.right!=null){
+                q.add(x.right);
+            }
+            if(x.left!=null){
+                q.add(x.left);
+            }
+            
+        }
+        Collections.reverse(arr);
+        return arr;
     }
 }      
