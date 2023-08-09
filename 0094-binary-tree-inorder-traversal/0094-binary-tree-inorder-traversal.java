@@ -30,7 +30,7 @@
 }*/
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> result = new ArrayList<>();   
+        /*List<Integer> result = new ArrayList<>();   
         Stack<TreeNode> stack = new Stack<>();  
         TreeNode node=root;                 
         while(!stack.isEmpty() || node!=null){
@@ -44,6 +44,17 @@ class Solution {
                 node=node.right;
             }
         }
-        return result;
+        return result;*/
+        List<Integer> arr=new ArrayList<Integer>();
+        inorder(root,arr);
+        return arr;
+    }
+    public void inorder(TreeNode root,List<Integer> arr){
+        if(root==null){
+            return;
+        }
+        inorder(root.left,arr);
+        arr.add(root.val);
+        inorder(root.right,arr);
     }
 }
