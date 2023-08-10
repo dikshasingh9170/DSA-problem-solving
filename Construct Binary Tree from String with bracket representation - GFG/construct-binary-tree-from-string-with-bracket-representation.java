@@ -137,26 +137,26 @@ class Node
 class Solution {
     public static Node treeFromString(String s) {
         int[] idx=new int[]{0};
-        return dfs(idx,s);
+        return solve(idx,s);
     }
-    public static Node dfs(int[] idx,String s){
+    public static Node solve(int[] idx,String s){
         if(idx[0]>=s.length() || s.charAt(idx[0])==')'){
             idx[0]++;
             return null;
         }
-        int nums=0;
+        int num=0;
         while(idx[0]<s.length() && Character.isDigit(s.charAt(idx[0]))){
-            nums=nums*10+(s.charAt(idx[0])-'0');
+            num=num*10+(s.charAt(idx[0])-'0');
             idx[0]++;
         }
-        Node head=new Node(nums);
+        Node head=new Node(num);
         if(idx[0]<s.length() && s.charAt(idx[0])=='('){
             idx[0]++;
-            head.left=dfs(idx,s);
+            head.left=solve(idx,s);
         }
         if(idx[0]<s.length() && s.charAt(idx[0])=='('){
             idx[0]++;
-            head.right=dfs(idx,s);
+            head.right=solve(idx,s);
         }
         idx[0]++;
         return head;
