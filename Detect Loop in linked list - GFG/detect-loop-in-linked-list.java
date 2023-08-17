@@ -82,7 +82,7 @@ class Solution {
     public static boolean detectLoop(Node head){
         Node fast=head;
         Node slow=head;
-        while(fast.next!=null && fast.next.next!=null){
+        while(fast!=null && fast.next!=null){
             fast=fast.next.next;
             slow=slow.next;
             if(slow==fast){
