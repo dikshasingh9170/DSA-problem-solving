@@ -69,18 +69,18 @@ class Solution
             head.data+=1;
             return head;
         }
-        Node temp=reverse(head);
-        Node rev=temp;
-        while(rev!=null){
-            if(rev.data<9){
-                rev.data+=1;
-                return reverse(temp);
+        Node rev=reverse(head);
+        Node curr=rev;
+        while(curr!=null){
+            if(curr.data<9){
+                curr.data+=1;
+                return reverse(rev);
             }
-            rev.data=0;
-            rev=rev.next;
+            curr.data=0;
+            curr=curr.next;
         }
         Node nnode=new Node(1);
-        nnode.next=temp;
+        nnode.next=rev;
         return nnode;
     }
     public static Node reverse(Node head){
