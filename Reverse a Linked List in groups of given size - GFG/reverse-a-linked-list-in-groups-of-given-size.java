@@ -82,18 +82,17 @@ class Solution
 {
     public static Node reverse(Node node, int k)
     {
-        Node prev=null;
-        Node curr=node;int count=0;
-        Node temp=null;
+        Node prev=null;Node curr=node;Node next=null;
+        int count=0;
         while(count<k && curr!=null){
-            temp=curr.next;
+            next=curr.next;
             curr.next=prev;
             prev=curr;
-            curr=temp;
+            curr=next;
             count++;
         }
-        if(temp!=null){
-            node.next=reverse(temp,k);
+        if(next!=null){
+            node.next=reverse(next,k);
         }
         return prev;
     }
