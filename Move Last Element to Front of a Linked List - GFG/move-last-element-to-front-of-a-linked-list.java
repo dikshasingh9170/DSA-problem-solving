@@ -81,17 +81,17 @@ Node.printList(Node node);
 
 class Solution {
     public static Node moveToFront(Node head) {
-        if(head==null || head.next==null) 
+        if(head==null || head.next==null){
             return head;
-
-        Node curr=head;
-        while(curr.next.next!=null){
-            curr=curr.next;
         }
-        Node last=curr.next;
-        curr.next=null;
-        last.next=head;
-        head=last;
+        Node fast=head;
+        while(fast.next.next!=null){
+            fast=fast.next;
+        }
+        Node slow=fast.next;
+        fast.next=null;
+        slow.next=head;
+        head=slow;
         return head;
     }
 }
