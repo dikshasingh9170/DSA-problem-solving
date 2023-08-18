@@ -102,23 +102,22 @@ class Solution
     //Function to check whether the list is palindrome.
     boolean isPalindrome(Node head) 
     {
-        Node slow=head;
-        Node fast=head;
-        while(fast!=null && fast.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-        }
+        //Your code here
+        Node mid=findmid(head);
         Node first=head;
-        Node second=reverse(slow);
-        while(second!=null){
+        Node second=reverse(mid.next);
+        mid.next=null;
+        while(first!=null && second!=null){
             if(first.data!=second.data){
                 return false;
             }
-            second=second.next;
-            first=first.next;
+            else{
+                first=first.next;
+                second=second.next;
+            }
         }
         return true;
-    }  
+    }
     Node reverse(Node head){
         Node prev=null;
         while(head!=null){
@@ -128,6 +127,15 @@ class Solution
             head=next;
         }
         return prev;
+    }
+    Node findmid(Node head){
+        Node slow=head;
+        Node fast=head;
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
     }
 }
 
