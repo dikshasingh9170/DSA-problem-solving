@@ -77,18 +77,16 @@ class Solution
     static Node mergeSort(Node head)
     {
         if(head==null || head.next==null){
-            return head; 
+            return head;
         }
-        
         Node mid=findmid(head);
         Node left=head;
         Node right=mid.next;
         mid.next=null;
-        
         left=mergeSort(left);
         right=mergeSort(right);
-        Node res=merge(left,right);
-        return res;
+        Node ans=merge(left,right);
+        return ans;
     }
     static Node findmid(Node head){
         Node slow=head;
@@ -106,8 +104,8 @@ class Solution
         if(right==null){
             return left;
         }
-        Node ans=new Node(-1);
-        Node temp=ans;
+        Node res=new Node(0);
+        Node temp=res;
         while(left!=null && right!=null){
             if(left.data<right.data){
                 temp.next=left;
@@ -126,7 +124,7 @@ class Solution
         if(right!=null){
             temp.next=right;
         }
-        return ans.next;
+        return res.next;
     }
 }
 
