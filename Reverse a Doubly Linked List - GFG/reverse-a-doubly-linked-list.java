@@ -91,15 +91,15 @@ public static Node reverseDLL(Node  head)
 {
     if(head==null || head.next==null)
      return head;
-    Node curr=head;
+     
     Node prev=null;
     Node next=null;
-    while(curr!=null){
-        next=curr.next;
-        curr.prev=next;
-        curr.next=prev;
-        prev=curr;
-        curr=next;
+    while(head!=null){
+        next=head.next;
+        head.prev=next;
+        head.next=prev;
+        prev=head;
+        head=next;
     }
     return prev;
 }
