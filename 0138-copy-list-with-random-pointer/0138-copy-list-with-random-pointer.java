@@ -32,9 +32,9 @@ class Solution {
         return hm.get(head);*/
         Node temp=head;
         while(temp!=null){
-            Node newNode=new Node(temp.val);
-            newNode.next=temp.next;
-            temp.next=newNode;
+            Node newnode=new Node(temp.val);
+            newnode.next=temp.next;
+            temp.next=newnode;
             temp=temp.next.next;
         }
         Node itr=head;
@@ -44,9 +44,10 @@ class Solution {
             }
             itr=itr.next.next;
         }
+        itr=head;
+        Node fast=null;
         Node dummy=new Node(0);
         temp=dummy;
-        itr=head;Node fast=null;
         while(itr!=null){
             fast=itr.next.next;
             temp.next=itr.next;
