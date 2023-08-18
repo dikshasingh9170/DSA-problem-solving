@@ -80,9 +80,10 @@ class GfG
 {
     boolean isCircular(Node head)
     {
-	    Node slow=head;
+	// Your code here
 	    Node fast=head;
-	    while(fast.next!=null && fast.next.next!=null){
+	    Node slow=head;
+	    while(fast!=null && fast.next!=null){
 	        slow=slow.next;
 	        fast=fast.next.next;
 	        if(slow==fast){
