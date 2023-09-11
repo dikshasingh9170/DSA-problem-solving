@@ -35,8 +35,6 @@ class GFG
 // } Driver Code Ends
 
 
-
-
 class Pair{
     int sidx;
     int lidx;
