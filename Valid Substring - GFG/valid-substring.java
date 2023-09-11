@@ -20,29 +20,33 @@ class GFG {
 
 // } Driver Code Ends
 
+
+//User function Template for Java
 class Solution {
     static int findMaxLen(String S) {
-        Stack<Integer> st = new Stack<>();
-        for(int i=0; i<S.length(); i++)
-        {
-            char ch = S.charAt(i);
-            if(ch=='(')
+        // code here
+        Stack<Integer> st=new Stack<Integer>();
+        for(int i=0;i<S.length();i++){
+            char c=S.charAt(i);
+            if(c=='('){
                 st.push(i);
-            else
-                if( !st.isEmpty() && S.charAt(st.peek())=='(' )
+            }
+            else{
+                if(!st.isEmpty() && S.charAt(st.peek())=='('){
                     st.pop();
-                else
+                }
+                else{
                     st.push(i);
+                }
+            }
         }
-        
-        int max = 0;
-        int n = S.length();
-        while(!st.isEmpty())
-        {
-            int i = st.pop();
-            max = Math.max(max,n-i-1);
-            n = i;
+        int max=0;int n=S.length();
+        while(st.size()>0){
+            int i=st.pop();
+            max=Math.max(max,n-i-1);
+            n=i;
         }
-        return Math.max(max,n);
+        max=Math.max(max,n);
+        return max;
     }
 };
