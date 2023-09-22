@@ -34,14 +34,22 @@ import java.util.*;
 
 class Solution {
     int getMinDiff(int[] arr, int n, int k) {
-        Arrays.sort(arr);int max=0;
-        int min=0;int diff=(arr[n-1]-arr[0]);
-        for(int i=1;i<n;i++){
-            if(arr[i]-k<0)continue;
-            max=Math.max(arr[i-1]+k,arr[n-1]-k);
-            min=Math.min(arr[0]+k,arr[i]-k);
-            diff=Math.min(diff,max-min);
+        // code here
+        Arrays.sort(arr);
+        int ans=arr[n-1]-arr[0];
+        int smallest=arr[0]+k;
+        int largest=arr[n-1]-k;int mi=0;int mx=0;
+        for(int i=0;i<n-1;i++){
+            mi=Math.min(smallest,arr[i+1]-k);
+            mx=Math.max(largest,arr[i]+k);
+            if(mi>=0){
+                ans=Math.min(ans,mx-mi);
+            }
         }
-        return diff;
+        return ans;
     }
 }
+
+
+// User function Template for Java
+
