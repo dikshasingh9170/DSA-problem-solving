@@ -60,22 +60,26 @@ class Driverclass
 
 class Solution
 {   
+    // arr[] : the input array
+    // N : size of the array arr[]
+    
+    //Function to return length of longest subsequence of consecutive integers.
 	static int findLongestConseqSubseq(int arr[], int N)
 	{
-	   Arrays.sort(arr);int count=0;int max=Integer.MIN_VALUE;
-	   for(int i=1;i<N;i++){
-	       int x=arr[i]-arr[i-1];
-	       if(x==1){
+	    Arrays.sort(arr);int x=0;int count=0;int max=Integer.MIN_VALUE;
+	    for(int i=1;i<N;i++){
+	        x=arr[i]-arr[i-1];
+	        if(x==1){
 	           count++;
-	       }
-	       if(x==0){
-	           continue;
-	       }
-	       if(x!=1){
-	           max=Math.max(max,count);
-	           count=0;
-	       }
-	   }
-	   return Math.max(count,max)+1;
+	        }
+	        if(x==0){
+	            continue;
+	        }
+	        if(x!=1){
+	            max=Math.max(count,max);
+	            count=0;
+	        }
+	    }
+	    return Math.max(count,max)+1;
 	}
 }
