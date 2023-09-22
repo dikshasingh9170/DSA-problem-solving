@@ -30,42 +30,29 @@ class Main
 
 //User function Template for Java
 
-/*class Solution
-{
-    public static boolean find3Numbers(int A[], int n, int X) { 
-    int sum=0;
-    Arrays.sort(A);
-       for(int i=0;i<A.length-2;i++)
-        {
-            int j=i+1;
-            int k=A.length-1;
-            while(j<k)
-            {
-                sum=A[i]+A[j]+A[k];
-                if(sum==X) return true;
-                if(sum<X) j++;
-                if(sum>X) k--;
-            }
-        }
-    return false;
-    }
-}*/
-
 class Solution
 {
-    public static boolean find3Numbers(int arr[], int n, int X) { 
-      int  x=X;
-        HashSet<Integer> hs=new HashSet<>();
+    //Function to find if there exists a triplet in the 
+    //array A[] which sums up to X.
+    public static boolean find3Numbers(int A[], int n, int X) { 
+    
+       // Your code Here
+        Arrays.sort(A);int j=0;int k=0;int sum=0;
         for(int i=0;i<n;i++){
-          x=x-arr[i];
-            for(int j=i+1;j<n;j++){
-                if(hs.contains(x-arr[j])){
+            j=i+1;
+            k=n-1;
+            while(j<k){
+                sum=A[i]+A[j]+A[k];
+                if(sum==X){
                     return true;
                 }
-                   hs.add(arr[j]);
+                else if(sum<X){
+                    j++;
+                }
+                else{
+                    k--;
+                }
             }
-         hs.clear();
-         x=X;
         }
         return false;
     }
