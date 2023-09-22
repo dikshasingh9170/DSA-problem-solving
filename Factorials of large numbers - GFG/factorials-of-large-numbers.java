@@ -24,16 +24,14 @@ class GfG
 // } Driver Code Ends
 
 
-
-
 //User function Template for Java
 
 class Solution {
     static ArrayList<Integer> factorial(int N){
-        ArrayList<Integer> list = new ArrayList<>();
-        int size=1;
+        //code here
         int val=2;int carry=0;
-        list.add(0,1);
+        ArrayList<Integer> list=new ArrayList<Integer>();
+        list.add(0,1);int size=1;
         while(val<=N){
             for(int i=size-1;i>=0;i--){
                 int temp=list.get(i)*val+carry;
