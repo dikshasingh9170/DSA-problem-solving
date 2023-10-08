@@ -89,19 +89,18 @@ class Node
 */
 public static Node reverseDLL(Node  head)
 {
-    if(head==null || head.next==null)
-     return head;
-     
-    Node prev=null;
-    Node next=null;
-    while(head!=null){
-        next=head.next;
-        head.prev=next;
-        head.next=prev;
-        prev=head;
-        head=next;
-    }
-    return prev;
+    //Your code here
+   Node prev=null;
+   Node curr=head;
+   Node next=null;
+   while(curr!=null){
+       next=curr.next;
+       curr.prev=next;
+       curr.next=prev;
+       prev=curr;
+       curr=next;
+   }
+   return prev;
 }
 
 
