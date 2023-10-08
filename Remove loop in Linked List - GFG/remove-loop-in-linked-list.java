@@ -109,22 +109,26 @@ class Solution
     //Function to remove a loop in the linked list.
     public static void removeLoop(Node head){
         // code here
+        // remove the loop without losing any nodes
+        if(head==null || head.next==null){
+            return;
+        }
         Node fast=head;
         Node slow=head;
         while(fast.next!=null && fast.next.next!=null){
-            fast=fast.next.next;
             slow=slow.next;
+            fast=fast.next.next;
             if(slow==head){
-                while(fast.next!=slow){
+                while(slow!=fast.next){
                     fast=fast.next;
                 }
                 fast.next=null;
             }
-            else if(fast==slow){
+            else if(slow==fast){
                 slow=head;
-                while(fast.next!=slow.next){
-                    fast=fast.next;
+                while(slow.next!=fast.next){
                     slow=slow.next;
+                    fast=fast.next;
                 }
                 fast.next=null;
             }
