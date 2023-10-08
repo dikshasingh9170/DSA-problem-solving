@@ -83,10 +83,9 @@ class Solution
     public static Node reverse(Node node, int k)
     {
         Node prev=null;
-        Node next=null;
         Node curr=node;
-        int count=0;
-        while(count<k && curr!=null){
+        Node next=null;int count=0;
+        while(curr!=null && count<k){
             next=curr.next;
             curr.next=prev;
             prev=curr;
