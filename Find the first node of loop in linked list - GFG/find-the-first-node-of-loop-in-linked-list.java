@@ -108,11 +108,15 @@ class GFG
 class Solution {
     //Function to find first node if the linked list has a loop.
     public static int findFirstNode(Node head){
+        //code here
+        if(head==null || head.next==null){
+            return -1;
+        }
         Node slow=head;
         Node fast=head;
-        while(fast.next.next!=null && fast.next!=null){
-            fast=fast.next.next;
+        while(fast.next!=null && fast.next.next!=null){
             slow=slow.next;
+            fast=fast.next.next;
             if(slow==fast){
                 slow=head;
                 while(slow!=fast){
