@@ -35,10 +35,10 @@ class Solution
     //Function to find if there exists a triplet in the 
     //array A[] which sums up to X.
     public static boolean find3Numbers(int A[], int n, int X) { 
-    
-       // Your code Here
-        Arrays.sort(A);int j=0;int k=0;int sum=0;
-        for(int i=0;i<n;i++){
+        Arrays.sort(A);
+        int j=1;int k=n-1;
+        int sum=0;
+        for(int i=0;i<n-2;i++){
             j=i+1;
             k=n-1;
             while(j<k){
