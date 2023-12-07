@@ -34,23 +34,37 @@ class Array {
 
 
 class Solution{
+    
+    // arr: input array
+    // n: size of array
+    // Function to find the trapped water between the blocks.
     static long trappingWater(int arr[], int n) { 
-        int[] max1=new int[n];
-        int[] max2=new int[n];
-        max1[0]=arr[0];
-        max2[n-1]=arr[n-1];
-        int k1=0,k2=0;
-        for(int i=1;i<arr.length;i++){
-                max1[i]=Math.max(arr[i],max1[i-1]);
+        // Your code here
+        int max1=arr[0];
+        int max2=arr[n-1];
+        int i=0;int j=n-1;
+        long res=0;
+        while(i<=j){
+            if(max1<max2){
+                if(max1<=arr[i]){
+                    max1=arr[i];
+                }
+                else{
+                    res+=max1-arr[i];
+                }
+                i++;
+            }
+            else{
+                if(max2<=arr[j]){
+                    max2=arr[j];
+                }
+                else{
+                    res+=max2-arr[j];
+                }
+                j--;
+            }
         }
-        for(int i=arr.length-2;i>=0;i--){
-                max2[i]=Math.max(arr[i],max2[i+1]);
-        }
-        long count=0;
-        for(int i=0;i<n;i++){
-            count+=(long)Math.min(max1[i],max2[i])-arr[i];
-        }
-        return count;
+        return res;
     } 
 }
 
