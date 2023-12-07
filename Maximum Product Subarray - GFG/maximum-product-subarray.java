@@ -22,17 +22,21 @@ import java.util.*;
 }
 
 // } Driver Code Ends
+
+
 class Solution {
+    // Function to find maximum product subarray
     long maxProduct(int[] arr, int n) {
-        long maxLeft=1, maxRight=1;
+        long maxleft=1;
+        long maxright=1;
         long max=Integer.MIN_VALUE;
-        for(int i=0; i<n; i++){
-            if(maxLeft==0) maxLeft=1;
-            if(maxRight==0) maxRight=1;
-            maxLeft*=arr[i];
-            maxRight*=arr[n-i-1];
-            max = Math.max(max, Math.max(maxLeft, maxRight));
+        for(int i=0;i<n;i++){
+            if(maxleft==0)maxleft=1;
+            if(maxright==0)maxright=1;
+            maxleft*=arr[i];
+            maxright*=arr[n-i-1];
+            max=Math.max(max,Math.max(maxleft,maxright));
         }
-        return max;  //t.c. ->O(n); s.c.->O(1)
+        return max;
     }
 }
