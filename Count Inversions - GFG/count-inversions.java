@@ -28,26 +28,31 @@ class Sorting
 
 // } Driver Code Ends
 
-class Solution {
-    static long inversionCount(long arr[], long N) {
-        return mergeSortAndCount(arr, 0,(int)(N - 1));
+
+//User function Template for Java
+
+class Solution
+{
+    static long inversionCount(long arr[], long N)
+    {
+        return mergeandcount(arr,0,(int)(N-1));
     }
-    static long mergeSortAndCount(long[] arr,int left,int right){
-        int mid=0;long count=0;
-        if(left<right){
-            mid=(left+right)/2;
-            count+=mergeSortAndCount(arr,left,mid);
-            count+=mergeSortAndCount(arr,mid+1,right);
-            count+=mergeAndCount(arr,left,mid,right);
+    static long mergeandcount(long[] arr,int l,int r){
+        long count=0;
+        if(l<r){
+            int mid=(l+r)/2;
+            count+=mergeandcount(arr,l,mid);
+            count+=mergeandcount(arr,mid+1,r);
+            count+=merge(arr,l,mid,r);
         }
         return count;
     }
-    static long mergeAndCount(long[] arr,int left,int mid,int right){
-        ArrayList<Long> temp=new ArrayList<>();
-        int low=left;
-        int high=mid+1;
+    static long merge(long[] arr,int l,int mid,int r){
+        ArrayList<Long> temp=new ArrayList<Long>();
         long count=0;
-        while(low<=mid && high<=right){
+        int low=l;
+        int high=mid+1;
+        while(low<=mid && high<=r){
             if(arr[low]<=arr[high]){
                 temp.add(arr[low]);
                 low++;
@@ -58,17 +63,16 @@ class Solution {
                 high++;
             }
         }
-     while(low<=mid){
+        while(low<=mid){
             temp.add(arr[low]);
             low++;
-            
-        } 
-        while(high<=right){
+        }
+        while(high<=r){
             temp.add(arr[high]);
             high++;
-        } 
-        for(int i=left;i<=right;i++){
-            arr[i]=temp.get(i-left);
+        }
+        for(int i=l;i<=r;i++){
+            arr[i]=temp.get(i-l);
         }
         return count;
     }
