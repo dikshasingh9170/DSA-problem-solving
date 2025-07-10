@@ -15,13 +15,11 @@
  */
 class Solution {
     public List<List<Integer>> verticalTraversal(TreeNode root) {
-        if(root==null){
-            return new ArrayList<>();
-        }
-        TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> tm=new TreeMap<>();
-        Queue<Tuple> q=new LinkedList<Tuple>();
-        q.offer(new Tuple(root,0,0));
-        while(!q.isEmpty()){
+       TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> tm=new TreeMap<>();
+       List<List<Integer>> res=new ArrayList<>();
+       Queue<Tuple> q=new LinkedList<Tuple>();
+       q.offer(new Tuple(root,0,0));
+       while(!q.isEmpty()){
             int size=q.size();
             while(size-->0){
                 TreeNode x=q.peek().root;
@@ -42,19 +40,19 @@ class Solution {
                     q.offer(new Tuple(x.right,row+1,col+1));
                 }
             }
-        }
-        List<List<Integer>> ans=new ArrayList<>();
-        for(TreeMap<Integer,PriorityQueue<Integer>> ys:tm.values()){
-            ArrayList<Integer> res=new ArrayList<Integer>();
+       }
+       for(TreeMap<Integer,PriorityQueue<Integer>> ys:tm.values()){
+            ArrayList<Integer> arr=new ArrayList<>();
             for(PriorityQueue<Integer> pq:ys.values()){
                 while(!pq.isEmpty()){
-                    res.add(pq.poll());
+                    arr.add(pq.poll());
                 }
             }
-            ans.add(res);
-        }
-        return ans;
+            res.add(arr);
+       }
+       return res;
     }
+    
 }
 class Tuple{
     TreeNode root;
