@@ -18,32 +18,15 @@ class Solution {
         if(root==null){
             return 0;
         }
-        Stack<Pair> st=new Stack<Pair>();
-        int res=0;
-        int ans=0;
-        while(!st.isEmpty() || root!=null){
-            if(root!=null){
-                st.push(new Pair(root,res));
-                root=root.left;
-                res++;
-            }
-            else{
-                root=st.peek().root;
-                res=st.peek().res;
-                ans=Math.max(res,ans);
-                st.pop();
-                root=root.right;
-                res++;
-            }
-        }
-        return 1+ans;
+        int res=depth(root);
+        return res;
     }
-}
-class Pair{
-    TreeNode root;
-    int res;
-    Pair(TreeNode root,int res){
-        this.root=root;
-        this.res=res;
+    public int depth(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int lh=depth(root.left);
+        int rh=depth(root.right);
+        return 1+Math.max(lh,rh);
     }
 }
