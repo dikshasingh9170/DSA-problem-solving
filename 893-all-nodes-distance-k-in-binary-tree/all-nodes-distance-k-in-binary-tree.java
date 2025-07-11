@@ -9,57 +9,52 @@
  */
 class Solution {
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        List<Integer> res=new ArrayList<Integer>();
+        HashMap<TreeNode,TreeNode> parent=new HashMap<TreeNode,TreeNode>();
+        markParent(root,parent);
+        HashMap<TreeNode,Boolean> visited=new HashMap<TreeNode,Boolean>();
         Queue<TreeNode> q=new LinkedList<TreeNode>();
-        HashMap<TreeNode,TreeNode> hm=new HashMap<TreeNode,TreeNode>();
-        HashSet<TreeNode> visited=new HashSet<TreeNode>();
-        q.offer(root);
-        while(!q.isEmpty()){
-            int size=q.size();
-            while(size-->0){
-                TreeNode x=q.poll();
-                if(x.left!=null){
-                    q.offer(x.left);
-                    hm.put(x.left,x);
-                }
-                if(x.right!=null){
-                    q.offer(x.right);
-                    hm.put(x.right,x);
-                }
-            }
-        }
         q.offer(target);
-        visited.add(target);
-        int count=0;
+        visited.put(target,true);
+        int curr_count=0;
         while(!q.isEmpty()){
+            if(curr_count==k)break;
             int size=q.size();
-            if(count==k)break;
-            count++;
             while(size-->0){
                 TreeNode x=q.poll();
-                if(hm.containsKey(x)){
-                    if(!visited.contains(hm.get(x))){
-                        q.offer(hm.get(x));
-                        visited.add(hm.get(x));
-                    }
+                if(x.left!=null && visited.get(x.left)==null){
+                    q.offer(x.left);
+                    visited.put(x.left,true);
                 }
-                if(x.left!=null){
-                    if(!visited.contains(x.left)){
-                        q.offer(x.left);
-                        visited.add(x.left);
-                    }
+                if(x.right!=null && visited.get(x.right)==null){
+                    q.offer(x.right);
+                    visited.put(x.right,true);
                 }
-                if(x.right!=null){
-                    if(!visited.contains(x.right)){
-                        q.offer(x.right);
-                        visited.add(x.right);
-                    }
+                if(parent.get(x)!=null && visited.get(parent.get(x))==null){
+                    q.offer(parent.get(x));
+                    visited.put(parent.get(x),true);
                 }
             }
+            curr_count++;
         }
+        List<Integer> res=new ArrayList<Integer>();
         while(!q.isEmpty()){
             res.add(q.poll().val);
         }
         return res;
+    }
+    public void markParent(TreeNode root,HashMap<TreeNode,TreeNode> parent){
+        Queue<TreeNode> q=new LinkedList<TreeNode>();
+        q.offer(root);
+        while(!q.isEmpty()){
+            TreeNode x=q.poll();
+            if(x.left!=null){
+                q.offer(x.left);
+                parent.put(x.left,x);
+            }
+            if(x.right!=null){
+                q.offer(x.right);
+                parent.put(x.right,x);
+            }
+        }
     }
 }
