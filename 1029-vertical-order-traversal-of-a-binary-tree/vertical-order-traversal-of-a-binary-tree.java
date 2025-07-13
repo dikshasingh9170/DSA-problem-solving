@@ -15,52 +15,51 @@
  */
 class Solution {
     public List<List<Integer>> verticalTraversal(TreeNode root) {
-       TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> tm=new TreeMap<>();
-       List<List<Integer>> res=new ArrayList<>();
-       Queue<Tuple> q=new LinkedList<Tuple>();
-       q.offer(new Tuple(root,0,0));
-       while(!q.isEmpty()){
+        TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> tm=new TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>>();
+        Queue<Tuple> q=new LinkedList<>();
+        q.offer(new Tuple(0,0,root));
+        while(!q.isEmpty()){
             int size=q.size();
             while(size-->0){
                 TreeNode x=q.peek().root;
-                int row=q.peek().row;
                 int col=q.peek().col;
+                int row=q.peek().row;
                 q.poll();
-                if(!tm.containsKey(row)){
-                    tm.put(row,new TreeMap<>());
+                if(!tm.containsKey(col)){
+                    tm.put(col,new TreeMap<>());
                 }
-                if(!tm.get(row).containsKey(col)){
-                    tm.get(row).put(col,new PriorityQueue<>());
+                if(!tm.get(col).containsKey(row)){
+                    tm.get(col).put(row,new PriorityQueue<>());
                 }
-                tm.get(row).get(col).offer(x.val);
+                tm.get(col).get(row).offer(x.val);
                 if(x.left!=null){
-                    q.offer(new Tuple(x.left,row-1,col+1));
+                    q.offer(new Tuple(col-1,row+1,x.left));
                 }
                 if(x.right!=null){
-                    q.offer(new Tuple(x.right,row+1,col+1));
+                    q.offer(new Tuple(col+1,row+1,x.right));
                 }
             }
-       }
-       for(TreeMap<Integer,PriorityQueue<Integer>> ys:tm.values()){
-            ArrayList<Integer> arr=new ArrayList<>();
+        }
+        List<List<Integer>> res=new ArrayList<>();
+        for(TreeMap<Integer,PriorityQueue<Integer>> ys:tm.values()){
+            ArrayList<Integer> arr=new ArrayList<Integer>();
             for(PriorityQueue<Integer> pq:ys.values()){
                 while(!pq.isEmpty()){
                     arr.add(pq.poll());
                 }
             }
             res.add(arr);
-       }
-       return res;
+        }
+        return res;
     }
-    
 }
 class Tuple{
     TreeNode root;
-    int row;
     int col;
-    public Tuple(TreeNode root,int row,int col){
-        this.root=root;
-        this.row=row;
+    int row;
+    public Tuple(int col,int row,TreeNode root){
         this.col=col;
+        this.row=row;
+        this.root=root;
     }
 }
