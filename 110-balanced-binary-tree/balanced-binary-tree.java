@@ -15,18 +15,17 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        int res=Balanced(root);
-        if(res==-1){
-            return false;
+        if(root==null){
+            return true;
         }
-        return true;
+        return solution(root)==-1?false:true;
     }
-    public int Balanced(TreeNode root){
+    public int solution(TreeNode root){
         if(root==null){
             return 0;
         }
-        int lh=Balanced(root.left);
-        int rh=Balanced(root.right);
+        int lh=solution(root.left);
+        int rh=solution(root.right);
         if(lh==-1 || rh==-1){
             return -1;
         }
