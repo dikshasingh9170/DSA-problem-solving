@@ -12,7 +12,7 @@ class Solution {
         HashMap<TreeNode,TreeNode> parent=new HashMap<TreeNode,TreeNode>();
         markParent(root,parent);
         HashMap<TreeNode,Boolean> visited=new HashMap<TreeNode,Boolean>();
-        Queue<TreeNode> q=new LinkedList<TreeNode>();
+        Queue<TreeNode> q=new LinkedList<>();
         q.offer(target);
         visited.put(target,true);
         int curr_count=0;
