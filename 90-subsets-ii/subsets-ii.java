@@ -18,6 +18,10 @@ class Solution {
         set.add(nums[index]);
         solution(nums,hs,set,index+1);
         set.remove(set.size()-1);
-        solution(nums,hs,set,index+1);
+        int nextIndex = index + 1;
+        while (nextIndex < nums.length && nums[nextIndex] == nums[index]) {
+            nextIndex++;
+        }
+        solution(nums,hs,set,nextIndex);
     }
 }
