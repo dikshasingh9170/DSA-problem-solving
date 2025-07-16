@@ -34,3 +34,10 @@ class Solution {
         return -1;
     }
 }
+// 3 3 7 7 10 11 11 
+// 0 1 2 3  4  5  6
+//mid=3
+//left =4  right=6  mid=5
+// right =5 mid=4
+
+
