@@ -1,27 +1,18 @@
 class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> res=new ArrayList<>();
+        ArrayList<Integer> arr=new ArrayList<Integer>();
         Arrays.sort(nums);
-        List<List<Integer>> subsets=new ArrayList<>();
-        HashSet<ArrayList<Integer>> hs=new HashSet<>();
-        List<Integer> set=new ArrayList<>();
-        solution(nums,hs,set,0);
-        for(ArrayList<Integer> ds:hs){
-            subsets.add(ds);
-        }
-        return subsets;
+        powerset(0,nums,res,arr);
+        return res;
     }
-    public void solution(int[] nums,HashSet<ArrayList<Integer>> hs,List<Integer> set,int index){
-        if(index==nums.length){
-            hs.add(new ArrayList<>(set));
-            return;
+    public void powerset(int i,int[] nums, List<List<Integer>> res,ArrayList<Integer> arr){
+        res.add(new ArrayList<>(arr));
+        for(int index = i;index<nums.length;index++) {
+            if(index!=i && nums[index] == nums[index-1]) continue; 
+            arr.add(nums[index]); 
+            powerset(index+1, nums, res, arr); 
+            arr.remove(arr.size() - 1);
         }
-        set.add(nums[index]);
-        solution(nums,hs,set,index+1);
-        set.remove(set.size()-1);
-        int nextIndex = index + 1;
-        while (nextIndex < nums.length && nums[nextIndex] == nums[index]) {
-            nextIndex++;
-        }
-        solution(nums,hs,set,nextIndex);
     }
 }
