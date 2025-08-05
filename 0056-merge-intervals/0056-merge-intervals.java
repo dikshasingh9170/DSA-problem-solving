@@ -1,27 +1,42 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-        
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
-        Stack<Integer> st=new Stack<Integer>();
-        st.push(intervals[0][0]);
-        st.push(intervals[0][1]);
-        for(int i=1;i<intervals.length;i++){
-            int x=st.pop();
-            if(intervals[i][0]<=x){
-                st.push(Math.max(intervals[i][1],x));
+       List<int[]> res=new ArrayList<int[]>();
+        if(intervals.length==0){
+            return res.toArray(new int[res.size()][]);
+        }
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);
+        int start=intervals[0][0];
+        int end=intervals[0][1];
+        for(int[] i:intervals){
+            if(end>=i[0]){
+                end=Math.max(end,i[1]);
             }
             else{
-                st.push(x);
-                st.push(intervals[i][0]);
-                st.push(intervals[i][1]);
+                res.add(new int[]{start,end});
+                start=i[0];
+                end=i[1];
             }
         }
-        int[][] ans=new int[st.size()/2][2];
-        for(int i=st.size()/2-1;i>=0;i--){
-            for(int j=1;j>=0;j--){
-                ans[i][j]=st.pop();
-            }
-        }
-        return ans;
+        res.add(new int[]{start,end});
+        return res.toArray(new int[res.size()][]);
     }
 }
+/*List<int[]> res=new ArrayList<>();
+        if(intervals.length==0){
+            return res.toArray(new int[res.size()][]);
+        }
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);
+        int start=intervals[0][0];
+        int end=intervals[0][1];
+        for(int[] i:intervals){
+            if(i[0]<=end){
+                end=Math.max(end,i[1]);
+            }
+            else{
+                res.add(new int[]{start,end});
+                start=i[0];
+                end=i[1];
+            }
+        }
+        res.add(new int[]{start,end});
+        return res.toArray(new int[res.size()][]);*/
