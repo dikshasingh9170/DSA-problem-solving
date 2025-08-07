@@ -13,37 +13,18 @@
  *     }
  * }
  */
-/*class Solution {
-    public ArrayList<Integer> arr=new ArrayList<Integer>();
+class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        solve(root);
-        return arr;
+        List<Integer> res=new ArrayList<Integer>();
+        inorder(root,res);
+        return res;
     }
-    public void solve(TreeNode root){
+    public void inorder(TreeNode root,List<Integer> res){
         if(root==null){
             return;
         }
-        solve(root.left);
-        arr.add(root.val);
-        solve(root.right);
-    }
-}*/
-class Solution {
-    public List<Integer> inorderTraversal(TreeNode root) {
-       List<Integer> arr=new ArrayList<Integer>();
-        Stack<TreeNode> st=new Stack<TreeNode>();
-        TreeNode node=root;
-        while(!st.isEmpty() || node!=null){
-            if(node!=null){
-                st.push(node);
-                node=node.left;
-            }
-            else{
-                node=st.pop();
-                arr.add(node.val);
-                node=node.right;
-            }
-        }
-        return arr;
+        inorder(root.left,res);
+        res.add(root.val);
+        inorder(root.right,res);
     }
 }
