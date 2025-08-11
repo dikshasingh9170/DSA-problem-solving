@@ -4,7 +4,7 @@ class Node{
     public Node(int key,int value){
         this.key=key;
         this.value=value;
-    } 
+    }
 }
 class LRUCache {
     public int capacity;
@@ -35,6 +35,7 @@ class LRUCache {
             node.value=value;
             remove(node);
             insertAtFront(node);
+            map.put(key,node);
         }
         else{
             if(map.size()==capacity){
@@ -52,10 +53,10 @@ class LRUCache {
         node.next.prev=node.prev;
     }
     public void insertAtFront(Node node){
-        node.next=head.next;
-        node.prev=head;
-        head.next.prev=node;
-        head.next=node;
+       node.next=head.next;
+       node.prev=head;
+       head.next.prev=node;
+       head.next=node;
     }
 }
 
