@@ -4,10 +4,6 @@ class Solution {
         int n2 = nums2.length;
         int i = 0, j = 0, index = 0;
         int[] arr = new int[n1 + n2];
-        if(n1 == 0 || n2 == 0)
-        {
-            
-        }
         while (i < n1 && j < n2) {
             if (nums1[i] < nums2[j]) {
                 arr[index++] = nums1[i];
@@ -38,14 +34,3 @@ class Solution {
         return val;
     }
 }
-
-// Input: nums1 = [1,2], nums2 = [3,4]
-// Output: 2.50000
-// Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
-
-// 1 - 3
-// arr[0] = 1
-// 2 - 3
-// arr[1] = 2
-
-// arr[2] = 
