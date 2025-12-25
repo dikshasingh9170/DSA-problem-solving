@@ -1,6 +1,5 @@
 class Solution {
     public String reverseWords(String s) {
-        s.trim();
         String[] str=s.split(" ");
         StringBuilder out =new StringBuilder();
 
