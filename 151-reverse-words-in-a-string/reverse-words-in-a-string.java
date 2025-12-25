@@ -3,12 +3,12 @@ class Solution {
         String[] str=s.trim().split(" ");
         String out = "";
 
-        for (int i = str.length - 1; i > 0; i--) {
+        for (int i = str.length - 1; i >=0; i--) {
             if(str[i]!=""){
                 out += str[i] + " ";
             }
         }
 
-        return out + str[0];
+        return out.trim();
     }
 }
