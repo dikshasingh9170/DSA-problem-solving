@@ -6,25 +6,18 @@ class Solution {
 
         for (int i = 0; i < n; i++) {
             if (!vis[i]) {
-                bfs(i, isConnected, vis);
                 provinces++;
+                dfs(i, isConnected, vis);
             }
         }
         return provinces;
     }
 
-    private void bfs(int start, int[][] isConnected, boolean[] vis) {
-        Queue<Integer> q = new ArrayDeque<>();
-        q.add(start);
-        vis[start] = true;
-
-        while (!q.isEmpty()) {
-            int city = q.poll();
-            for (int j = 0; j < isConnected.length; j++) {
-                if (isConnected[city][j] == 1 && !vis[j]) {
-                    vis[j] = true;
-                    q.add(j);
-                }
+    private void dfs(int start, int[][] isConnected, boolean[] vis) {
+        vis[start]=true;
+        for(int j=0;j<isConnected[start].length;j++){
+            if(isConnected[start][j]==1 && !vis[j]){
+                dfs(j,isConnected,vis);
             }
         }
     }
