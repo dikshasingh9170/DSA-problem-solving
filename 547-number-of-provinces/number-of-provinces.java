@@ -1,37 +1,29 @@
 class Solution {
     public int findCircleNum(int[][] isConnected) {
-        List<List<Integer>> arr = new ArrayList<>();
-        for (int i = 0; i < isConnected.length; i++) {
-            arr.add(new ArrayList<>());
-        }
+        int n = isConnected.length;
+        boolean[] vis = new boolean[n];
+        int provinces = 0;
 
-        for (int i = 0; i < isConnected.length; i++) {
-            for(int j=0;j<isConnected[i].length;j++){
-                if(isConnected[i][j]==1){
-                    arr.get(i).add(j);
-                }
+        for (int i = 0; i < n; i++) {
+            if (!vis[i]) {
+                bfs(i, isConnected, vis);
+                provinces++;
             }
         }
-        int cnt=0;
-        int[] vis=new int[arr.size()];
-        for (int i = 0; i < vis.length; i++) {
-            if (vis[i] == 0) {
-                cnt++;
-                bfs(i, arr, vis);
-            }
-        }
-        return cnt;
+        return provinces;
     }
-    private void bfs(int start, List<List<Integer>> arr, int[] vis) {
-        Queue<Integer> q=new LinkedList<>();
+
+    private void bfs(int start, int[][] isConnected, boolean[] vis) {
+        Queue<Integer> q = new ArrayDeque<>();
         q.add(start);
-        vis[start]=1;
-        while(!q.isEmpty()){
-            int x=q.poll();
-            for(int e:arr.get(x)){
-                if(vis[e]!=1){
-                    vis[e]=1;
-                    q.add(e);
+        vis[start] = true;
+
+        while (!q.isEmpty()) {
+            int city = q.poll();
+            for (int j = 0; j < isConnected.length; j++) {
+                if (isConnected[city][j] == 1 && !vis[j]) {
+                    vis[j] = true;
+                    q.add(j);
                 }
             }
         }
