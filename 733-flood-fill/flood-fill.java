@@ -1,46 +1,48 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
-        int n=image.length;
-        int m=image[0].length;
-        boolean[][] vis=new boolean[n][m];
-        bfs(image,sr,sc,image[sr][sc],color,vis);
+
+        int originalColor = image[sr][sc];
+        if (originalColor == color) return image; 
+        bfs(image, sr, sc, originalColor, color);
         return image;
     }
-    public void bfs(int[][] image, int sr, int sc, int currColor, int color,boolean[][] vis){
-        Queue<int[]> q=new ArrayDeque<>();
-        q.add(new int[]{sr,sc,currColor});
-        image[sr][sc]=color;
-        vis[sr][sc]=true;
-        while(!q.isEmpty()){
-            int[] curr=q.poll();
-            sr=curr[0];
-            sc=curr[1];
-            if(isValid(image,sr-1,sc,curr[2],vis)){
-                vis[sr-1][sc]=true;
-                image[sr-1][sc]=color;
-                q.add(new int[]{sr-1,sc,curr[2]});
+
+    private void bfs(int[][] image, int sr, int sc, int originalColor, int newColor) {
+
+        Queue<int[]> q = new ArrayDeque<>();
+        q.add(new int[]{sr, sc});
+        image[sr][sc] = newColor; 
+
+        while (!q.isEmpty()) {
+            int[] curr = q.poll();
+            int r = curr[0];
+            int c = curr[1];
+
+            if (isValid(image, r - 1, c, originalColor)) {
+                image[r - 1][c] = newColor;
+                q.add(new int[]{r - 1, c});
             }
-            if(isValid(image,sr+1,sc,curr[2],vis)){
-                vis[sr+1][sc]=true;
-                image[sr+1][sc]=color;
-                q.add(new int[]{sr+1,sc,curr[2]});
+
+            if (isValid(image, r + 1, c, originalColor)) {
+                image[r + 1][c] = newColor;
+                q.add(new int[]{r + 1, c});
             }
-            if(isValid(image,sr,sc-1,curr[2],vis)){
-                vis[sr][sc-1]=true;
-                image[sr][sc-1]=color;
-                q.add(new int[]{sr,sc-1,curr[2]});
+
+            if (isValid(image, r, c - 1, originalColor)) {
+                image[r][c - 1] = newColor;
+                q.add(new int[]{r, c - 1});
             }
-            if(isValid(image,sr,sc+1,curr[2],vis)){
-                vis[sr][sc+1]=true;
-                image[sr][sc+1]=color;
-                q.add(new int[]{sr,sc+1,curr[2]});
+
+            if (isValid(image, r, c + 1, originalColor)) {
+                image[r][c + 1] = newColor;
+                q.add(new int[]{r, c + 1});
             }
         }
     }
-    public boolean isValid(int[][] image, int sr, int sc, int color,boolean[][] vis){
-        if(sr>=0 && sr<image.length && sc>=0 && sc<image[0].length && color==image[sr][sc] && !vis[sr][sc]){
-            return true;
-        }
-        return false;
+
+    private boolean isValid(int[][] image, int r, int c, int originalColor) {
+        return r >= 0 && r < image.length &&
+               c >= 0 && c < image[0].length &&
+               image[r][c] == originalColor;
     }
 }
