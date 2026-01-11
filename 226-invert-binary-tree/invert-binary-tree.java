@@ -22,6 +22,7 @@ class Solution {
         return root;
     }
     public void solution(TreeNode root){
+        if(root==null)return;
         if(root.left==null && root.right==null){
             return;
         }
@@ -29,7 +30,7 @@ class Solution {
             root.left=root.right;
             root.right=temp;
         
-        invertTree(root.left);
-        invertTree(root.right);
+        solution(root.left);
+        solution(root.right);
     }
 }
