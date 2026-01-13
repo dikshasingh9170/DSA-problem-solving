@@ -18,8 +18,8 @@ class Solution {
 
     public int[] findMode(TreeNode root) {
         HashMap<Integer, Integer> map = new HashMap<>();
+        max=0;
         helper(root, map);
-
         List<Integer> list = new ArrayList<>();
         for (Map.Entry<Integer, Integer> e : map.entrySet()) {
             if (e.getValue() == max) {
