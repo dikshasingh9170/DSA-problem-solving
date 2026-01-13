@@ -9,51 +9,50 @@
  */
 class Solution {
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
-        HashMap<TreeNode,TreeNode> parent=new HashMap<TreeNode,TreeNode>();
-        markParent(root,parent);
-        HashMap<TreeNode,Boolean> visited=new HashMap<TreeNode,Boolean>();
+        HashMap<TreeNode,TreeNode> hm=new HashMap<>();
+        markParent(root,hm);int i=0;
         Queue<TreeNode> q=new LinkedList<>();
+        HashMap<TreeNode,Boolean> vis=new HashMap<>();
+        List<Integer> res=new ArrayList<>();
         q.offer(target);
-        visited.put(target,true);
-        int curr_count=0;
+        vis.put(target,true);
         while(!q.isEmpty()){
-            if(curr_count==k)break;
             int size=q.size();
+            if(i==k)break;
             while(size-->0){
                 TreeNode x=q.poll();
-                if(x.left!=null && visited.get(x.left)==null){
+                if(x.left!=null && !vis.containsKey(x.left)){
                     q.offer(x.left);
-                    visited.put(x.left,true);
+                    vis.put(x.left,true);
                 }
-                if(x.right!=null && visited.get(x.right)==null){
+                if(x.right!=null && !vis.containsKey(x.right)){
                     q.offer(x.right);
-                    visited.put(x.right,true);
+                    vis.put(x.right,true);
                 }
-                if(parent.get(x)!=null && visited.get(parent.get(x))==null){
-                    q.offer(parent.get(x));
-                    visited.put(parent.get(x),true);
+                if(hm.containsKey(x) && !vis.containsKey(hm.get(x))){
+                    q.offer(hm.get(x));
+                    vis.put(hm.get(x),true);
                 }
             }
-            curr_count++;
+            i++;
         }
-        List<Integer> res=new ArrayList<Integer>();
         while(!q.isEmpty()){
             res.add(q.poll().val);
         }
         return res;
     }
-    public void markParent(TreeNode root,HashMap<TreeNode,TreeNode> parent){
-        Queue<TreeNode> q=new LinkedList<TreeNode>();
+    public void markParent(TreeNode root,HashMap<TreeNode,TreeNode> hm){
+        Queue<TreeNode> q=new LinkedList<>();
         q.offer(root);
         while(!q.isEmpty()){
             TreeNode x=q.poll();
             if(x.left!=null){
+                hm.put(x.left,x);
                 q.offer(x.left);
-                parent.put(x.left,x);
             }
             if(x.right!=null){
+                hm.put(x.right,x);
                 q.offer(x.right);
-                parent.put(x.right,x);
             }
         }
     }
