@@ -3,46 +3,18 @@ class Solution {
 
         int originalColor = image[sr][sc];
         if (originalColor == color) return image; 
-        bfs(image, sr, sc, originalColor, color);
+        dfs(image, sr, sc, originalColor, color);
         return image;
     }
 
-    private void bfs(int[][] image, int sr, int sc, int originalColor, int newColor) {
-
-        Queue<int[]> q = new ArrayDeque<>();
-        q.add(new int[]{sr, sc});
-        image[sr][sc] = newColor; 
-
-        while (!q.isEmpty()) {
-            int[] curr = q.poll();
-            int r = curr[0];
-            int c = curr[1];
-
-            if (isValid(image, r - 1, c, originalColor)) {
-                image[r - 1][c] = newColor;
-                q.add(new int[]{r - 1, c});
-            }
-
-            if (isValid(image, r + 1, c, originalColor)) {
-                image[r + 1][c] = newColor;
-                q.add(new int[]{r + 1, c});
-            }
-
-            if (isValid(image, r, c - 1, originalColor)) {
-                image[r][c - 1] = newColor;
-                q.add(new int[]{r, c - 1});
-            }
-
-            if (isValid(image, r, c + 1, originalColor)) {
-                image[r][c + 1] = newColor;
-                q.add(new int[]{r, c + 1});
-            }
+    private void dfs(int[][] image, int sr, int sc, int originalColor, int newColor) {
+        if(sr<0 || sr>=image.length || sc<0 || sc>=image[0].length || image[sr][sc]!=originalColor){
+            return;
         }
-    }
-
-    private boolean isValid(int[][] image, int r, int c, int originalColor) {
-        return r >= 0 && r < image.length &&
-               c >= 0 && c < image[0].length &&
-               image[r][c] == originalColor;
+        image[sr][sc]=newColor;
+        dfs(image,sr+1,sc,originalColor,newColor);
+        dfs(image,sr-1,sc,originalColor,newColor);
+        dfs(image,sr,sc+1,originalColor,newColor);
+        dfs(image,sr,sc-1,originalColor,newColor);
     }
 }
