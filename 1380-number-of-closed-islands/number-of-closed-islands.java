@@ -1,28 +1,27 @@
 class Solution {
     public int closedIsland(int[][] grid) {
-        int rows = grid.length, cols = grid[0].length, count = 0;
-        
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (grid[i][j] == 0 && dfs(grid,i, j)) {
-                    count++;
+        int cnt=0;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(grid[i][j]==0 && dfs(i,j,grid)){
+                    cnt++;
                 }
             }
         }
-        
-        return count;
+        return cnt;
     }
-    public boolean dfs(int[][] grid,int i, int j) {
-        int rows = grid.length, cols = grid[0].length;
-        if (i < 0 || j < 0 || i >= rows || j >= cols) {
+    public boolean dfs(int i,int j,int[][] grid){
+        if(i<0 || j<0 || i>=grid.length || j>=grid[0].length){
             return false;
         }
-        if (grid[i][j] == 1) {
+        if(grid[i][j]==1){
             return true;
         }
-        grid[i][j] = 1; // mark as visited
-        boolean left = dfs(grid,i, j-1), right = dfs(grid,i, j+1);
-        boolean up = dfs(grid,i-1, j), down = dfs(grid,i+1, j);
+        grid[i][j]=1;
+        boolean left=dfs(i,j-1,grid);
+        boolean right=dfs(i,j+1,grid);
+        boolean up=dfs(i-1,j,grid);
+        boolean down=dfs(i+1,j,grid);
         return left && right && up && down;
     }
 }
