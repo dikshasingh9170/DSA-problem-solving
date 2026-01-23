@@ -5,22 +5,20 @@ class Solution {
         Arrays.fill(color,-1);
         Queue<Integer> q=new LinkedList<>();
         for (int i = 0; i < n; i++) {
-            if (color[i] == -1) {   // new component
-                color[i] = 0;
-                q.add(i);
-
-                while (!q.isEmpty()) {
-                    int node = q.poll();
-
-                    for (int nei : graph[node]) {
-                        if (color[nei] == -1) {
-                            color[nei] = 1 - color[node];
-                            q.add(nei);
-                        } else if (color[nei] == color[node]) {
-                            return false;
-                        }
-                    }
-                }
+            if (color[i] == -1) {   
+                if(dfs(i,0,graph,color)==false) return false;
+            }
+        }
+        return true;
+    }
+    public boolean dfs(int i,int col,int[][] graph,int[] color){
+        color[i] = col;
+        for(int e:graph[i]){
+            if(color[e]==-1){
+                if(dfs(e,1-col,graph,color)==false)return false;
+            }
+            else if(color[e]==color[i]){
+                return false;
             }
         }
         return true;
